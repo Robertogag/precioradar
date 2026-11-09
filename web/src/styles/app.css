@@ -891,13 +891,6 @@
     grid-area: store;
     align-self: start;
   }
-  /* En pantalla angosta el nombre de la tienda y la nota "precio visto hace…" se parten en renglones; nunca se cortan. */
-  .offer__name,
-  .offer__stale {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: clip;
-  }
   .offer__price {
     grid-area: price;
   }
@@ -2162,6 +2155,20 @@ a.deal__link:hover {
 @media (max-width: 640px) {
   .chart__hint {
     display: none;
+  }
+  /* En el celular la foto solo acompaña al título: la lista de tiendas, los botones y el historial
+     salen de la columna de la foto y usan todo el ancho de la tarjeta (72 px de foto + 14 px de separación). */
+  .card__body > .offers,
+  .card__body > .card__actions,
+  .card__body > .history {
+    margin-left: calc(-72px - 14px);
+  }
+  /* El nombre de la tienda y la nota "precio visto hace…" se parten en renglones; nunca se cortan. */
+  .offer__name,
+  .offer__stale {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
   }
 }
 .chart__tip--right {
