@@ -45,26 +45,28 @@ Busca un producto y compara su precio en 21 tiendas de México al mismo tiempo, 
 ## Cómo funciona
 
 ```mermaid
-flowchart LR
-  U[Persona] -->|busca| W[Web React / App Expo]
+flowchart TB
+  U[Persona] --> W[Web React · App Expo]
+  W -->|/api/search| A
   subgraph GCP[Google Cloud · us-central1]
     direction LR
-    subgraph RUN[Cloud Run · una sola imagen Docker]
-      A[API Fastify · Node 22<br/>sirve también la web]
-      T3[Carril de navegador<br/>Chromium real: Coppel · Sears]
+    S[Cloud Scheduler<br/>refresco diario 6:00] --> A
+    SM[Secret Manager<br/>credenciales] -.-> A
+    subgraph RUN[Cloud Run]
+      direction TB
+      A[API Fastify · Node 22<br/>sirve la API y la web] --> B[Carril de navegador<br/>Chromium real]
     end
-    P[(Cloud SQL · Postgres<br/>historial de precios)]
-    S[Cloud Scheduler<br/>refresco diario 6:00]
-    SM[Secret Manager<br/>credenciales]
+    A -->|precios vistos| P[(Cloud SQL · Postgres<br/>historial)]
   end
-  W -->|/api/search| A
-  A --> T3
-  A -->|a la vez, con espera máxima| T1[Catálogos públicos<br/>VTEX · Shopify · Magento · WooCommerce]
-  A --> T2[Páginas públicas<br/>Amazon · Liverpool · Cyberpuerta · Home Depot …]
-  A -->|precios vistos| P
-  S -->|cada mañana| A
-  SM -.-> A
-  W -.->|precio que la persona ve<br/>al abrir Mercado Libre| A
+  subgraph T[" "]
+    direction LR
+    T3[Coppel · Sears<br/>leídas con el navegador]
+    T2[Páginas públicas<br/>Amazon · Liverpool · Cyberpuerta …]
+    T1[Catálogos públicos<br/>VTEX · Shopify · Magento · WooCommerce]
+  end
+  B --> T3
+  A --> T2
+  A --> T1
 ```
 
 Todo corre en **Google Cloud**: una sola imagen Docker en **Cloud Run** que sirve la API y la web, escala a cero cuando nadie entra y hasta cuatro instancias en picos; **Cloud SQL** (Postgres) guarda el historial; **Cloud Scheduler** dispara el refresco diario de las búsquedas más repetidas; **Secret Manager** guarda las credenciales (nunca en el código); **Cloud Build** construye la imagen desde el código fuente; **Cloud Monitoring** vigila `/api/health` cada cinco minutos y avisa por correo si deja de responder. El despliegue completo es un solo script idempotente, `desplegar-gcp.ps1`.
