@@ -65,5 +65,4 @@ Gracias a quienes la probaron y mandaron correcciones.
 ## Notas para grabar o escribir
 
 - El video se genera con `scratchpad/shots/demo-video.mjs` (Playwright) contra producción; si se regraba, hacerlo con un producto con historial (Nintendo Switch 2).
-- Reemplazar `github.com/Robertogag/precioradar` por la liga real del repositorio al crearlo.
 - Si ya está el dominio, usar https://precioradar.mx en los tres textos.
