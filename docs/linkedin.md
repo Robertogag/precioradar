@@ -6,7 +6,7 @@ Tres publicaciones, una por semana aproximadamente. Un video o captura por publi
 
 ## Post 1 · Lanzamiento (antes del Buen Fin)
 
-**Adjuntar:** `docs/demo.mp4`, 24 segundos (1280×800), con música suave de fondo: arreglo propio de "Jingle Bells" (dominio público desde 1857, sintetizado, sin muestras de terceros), así que no requiere atribución ni licencia.
+**Adjuntar:** `docs/demo.mp4`, 24 segundos (1280×800), con música de fondo: "Let's All Dance This Christmas" de Michael Ramir C., de Mixkit (Stock Music Free License: uso libre en videos, comercial o no, sin atribución obligatoria). Alternativas ya mezcladas en `visual aidideo-opcion-2…` y `…opcion-3…`.
 
 Hice PrecioRadar: buscas un producto y compara su precio en 21 tiendas de México al mismo tiempo, con historial para saber si la "oferta" del Buen Fin es real.
 
