@@ -8,7 +8,7 @@ Busca un producto y compara su precio en 21 tiendas de México al mismo tiempo, 
 
 <p align="center">
   <a href="https://precioradar-701205043940.us-central1.run.app">Abrir la app</a> ·
-  <a href="#cómo-funciona">Cómo funciona</a> ·
+  <a href="#cómo-funciona-arquitectura">Cómo funciona</a> ·
   <a href="#correrlo-en-tu-computadora">Correrlo en tu computadora</a> ·
   <a href="#decisiones-que-vale-la-pena-contar">Decisiones</a> ·
   <a href="#english-summary">English</a>
@@ -42,32 +42,12 @@ Busca un producto y compara su precio en 21 tiendas de México al mismo tiempo, 
 </p>
 <p align="center"><sub>Tema oscuro: tarjeta con el enlace a Mercado Libre y tabla del historial.</sub></p>
 
-## Cómo funciona
+## Cómo funciona (arquitectura)
 
-```mermaid
-flowchart TB
-  U[Persona] --> W[Web React · App Expo]
-  W -->|/api/search| A
-  subgraph GCP[GCP · Google Cloud Platform · us-central1]
-    direction LR
-    S[Cloud Scheduler<br/>refresco diario 6:00] --> A
-    SM[Secret Manager<br/>credenciales] -.-> A
-    subgraph RUN[Cloud Run]
-      direction TB
-      A[API Fastify · Node 22<br/>sirve la API y la web] --> B[Carril de navegador<br/>Chromium real]
-    end
-    A -->|precios vistos| P[(Cloud SQL · Postgres<br/>historial)]
-  end
-  subgraph T[" "]
-    direction LR
-    T3[Coppel · Sears<br/>leídas con el navegador]
-    T2[Páginas públicas<br/>Amazon · Liverpool · Cyberpuerta …]
-    T1[Catálogos públicos<br/>VTEX · Shopify · Magento · WooCommerce]
-  end
-  B --> T3
-  A --> T2
-  A --> T1
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/arquitectura-oscuro.png">
+  <img src="docs/arquitectura-claro.png" width="100%" alt="Arquitectura de PrecioRadar: personas (web y app) a la izquierda; en el centro Google Cloud Platform con Cloud Run (API Fastify y carril de navegador), Cloud SQL, Secret Manager, Cloud Scheduler, Cloud Build y Cloud Monitoring; a la derecha las tiendas, leídas solo por páginas y APIs públicas, y Mercado Libre por enlace y precio compartido">
+</picture>
 
 Toda la infraestructura está en **GCP (Google Cloud Platform)**: una sola imagen Docker en **Cloud Run** que sirve la API y la web, escala a cero cuando nadie entra y hasta cuatro instancias en picos; **Cloud SQL** (Postgres) guarda el historial; **Cloud Scheduler** dispara el refresco diario de las búsquedas más repetidas; **Secret Manager** guarda las credenciales (nunca en el código); **Cloud Build** construye la imagen desde el código fuente; **Cloud Monitoring** vigila `/api/health` cada cinco minutos y avisa por correo si deja de responder. El despliegue completo es un solo script idempotente, `desplegar-gcp.ps1`.
 
