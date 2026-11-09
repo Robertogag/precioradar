@@ -30,7 +30,7 @@ Busca un producto y compara su precio en 21 tiendas de México al mismo tiempo, 
 
 <br clear="right">
 
-<p align="center"><img src="docs/capturas/02-resultados-claro.png" width="100%" alt="Resultados de PlayStation 5: tiendas a la izquierda, una tarjeta por producto con la tienda más barata y cuánto más cuesta en las demás"></p>
+<p align="center"><img src="docs/capturas/02-resultados-claro.png" width="100%" alt="Resultados de Nintendo Switch 2: tiendas a la izquierda, una tarjeta por producto con la tienda más barata y cuánto más cuesta en las demás"></p>
 <p align="center"><sub>Un producto por tarjeta: la tienda más barata, cuánto más cuesta en las demás y qué te conviene.</sub></p>
 
 <p align="center"><img src="docs/capturas/04-historial-grafica.png" width="78%" alt="Historial de precios por tienda con flechas de bajó, subió o igual"></p>
