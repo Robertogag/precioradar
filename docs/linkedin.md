@@ -6,7 +6,7 @@ Tres publicaciones, una por semana aproximadamente. Un video o captura por publi
 
 ## Post 1 · Lanzamiento (antes del Buen Fin)
 
-**Adjuntar:** `docs/demo.mp4`, 24 segundos (1280×800, sin audio).
+**Adjuntar:** `docs/demo.mp4`, 24 segundos (1280×800), con música suave de fondo: arreglo propio de "Jingle Bells" (dominio público desde 1857, sintetizado, sin muestras de terceros), así que no requiere atribución ni licencia.
 
 Hice PrecioRadar: buscas un producto y compara su precio en 21 tiendas de México al mismo tiempo, con historial para saber si la "oferta" del Buen Fin es real.
 
