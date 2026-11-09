@@ -1,0 +1,17 @@
+# Lo que NO se sube a Cloud Build con `gcloud run deploy --source .` (la imagen se arma con el Dockerfile).
+.gcloudignore
+.git
+**/node_modules
+**/dist
+**/.expo
+mobile
+api/test
+api/scripts
+web/scripts
+web/release
+**/*.log
+**/.env
+**/.env.*
+!**/.env.example
+*.md
+iniciar.cmd

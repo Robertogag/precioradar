@@ -1,0 +1,232 @@
+/*
+ * Sistema de diseño PrecioRadar (kit de marca del 7-nov-2026, carpeta "visual aid").
+ * Azul profundo para la tinta, verde radar para la acción y el ahorro, azul tech para la interfaz,
+ * verde menta para resaltar, amarillo para la oferta. Los mismos valores que mobile/src/theme.ts.
+ *
+ * Tema claro por omisión; tema oscuro con sus propios pasos (no un volteo automático) cuando el sistema lo
+ * pide o cuando la persona lo elige (html[data-theme]). Las imágenes de producto y los logotipos van siempre
+ * sobre blanco (--media), porque así los publican las tiendas.
+ */
+:root {
+  color-scheme: light;
+
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --surface-alt: #eef2f6;
+  --tint: #eaf2ff;
+  --line: #e5e7eb;
+  --media: #ffffff;
+
+  --ink: #0b2545;
+  --ink-soft: #44546a;
+  --ink-faint: #8793a6;
+
+  --brand: #2563eb;
+  --brand-deep: #1d4ed8;
+  --brand-fill: #3b82f6;
+  --on-brand: #ffffff;
+  --accent: #22c55e;
+  --accent-deep: #16a34a;
+  --accent-soft: #a7f3d0;
+  --on-accent: #ffffff;
+
+  --save: #15803d;
+  --save-bar: #22c55e;
+  --save-soft: #dcfce7;
+  --save-ink: #065f46;
+
+  --deal: #92400e;
+  --deal-fill: #facc15;
+  --deal-soft: #fef3c7;
+  --warn: #b45309;
+  --warn-soft: #fef3c7;
+
+  /* Sube / baja (mínimo y máximo del historial). */
+  --good: #16a34a;
+  --bad: #dc2626;
+
+  --track: #e5e7eb;
+  --bar: #cbd5e1;
+
+  /* Series de las gráficas: paleta categórica validada (daltonismo y contraste), en orden fijo. */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #008300;
+  --series-7: #6250d6;
+  --series-8: #e34948;
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+
+  --shadow-card: 0 1px 2px rgba(11, 37, 69, 0.05), 0 6px 16px rgba(11, 37, 69, 0.06);
+  --shadow-raised: 0 2px 4px rgba(11, 37, 69, 0.06), 0 14px 32px rgba(11, 37, 69, 0.12);
+  --shadow-field: 0 1px 2px rgba(11, 37, 69, 0.05), 0 10px 28px rgba(59, 130, 246, 0.22);
+
+  --font: 'Plus Jakarta Sans Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --gutter: 16px;
+  --max: 1560px;
+  --top-h: 64px;
+  --bottom-nav-h: 64px;
+}
+
+/* Los mismos papeles, con pasos elegidos para fondo oscuro. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #0b1220;
+  --surface: #111a2e;
+  --surface-alt: #182338;
+  --tint: #162744;
+  --line: #243049;
+  --media: #ffffff;
+
+  --ink: #e6edf7;
+  --ink-soft: #aab6c8;
+  --ink-faint: #7b8799;
+
+  --brand: #7eb3ff;
+  --brand-deep: #a8ccff;
+  --brand-fill: #3b82f6;
+  --on-brand: #0b1220;
+  --accent: #22c55e;
+  --accent-deep: #4ade80;
+  --accent-soft: #14532d;
+  --on-accent: #ffffff;
+
+  --save: #4ade80;
+  --save-bar: #22c55e;
+  --save-soft: #0f2e1d;
+  --save-ink: #bbf7d0;
+
+  --deal: #fde68a;
+  --deal-fill: #facc15;
+  --deal-soft: #3b2f08;
+  --warn: #fbbf24;
+  --warn-soft: #3b2f08;
+
+  --good: #4ade80;
+  --bad: #f87171;
+
+  --track: #243049;
+  --bar: #3a4765;
+
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --series-6: #2e9d2e;
+  --series-7: #9085e9;
+  --series-8: #e66767;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 16px rgba(0, 0, 0, 0.35);
+  --shadow-raised: 0 2px 4px rgba(0, 0, 0, 0.35), 0 14px 32px rgba(0, 0, 0, 0.5);
+  --shadow-field: 0 1px 2px rgba(0, 0, 0, 0.3), 0 10px 28px rgba(59, 130, 246, 0.25);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.2s, color 0.2s;
+}
+
+#root {
+  display: contents;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+::selection {
+  background: var(--tint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "@precioradar/shared",
+  "private": true,
+  "type": "module",
+  "description": "Contrato y reglas compartidas entre api, web y mobile. Solo se importa por ruta relativa; este archivo le dice a TypeScript y a Node que son módulos ES."
+}

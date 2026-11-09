@@ -1,0 +1,2258 @@
+{
+   "type" : "productCategorySearchPageWsDTO",
+   "addSiteName" : true,
+   "autoSpellCheck" : false,
+   "breadcrumbs" : [ ],
+   "currentQuery" : {
+      "query" : {
+         "value" : "iphone 15:relevance"
+      },
+      "url" : "/search?q=iphone+15%3Arelevance"
+   },
+   "didYouMean" : false,
+   "facets" : [ {
+      "category" : true,
+      "deliveryFacet" : false,
+      "displayName" : "Categoría",
+      "multiSelect" : true,
+      "name" : "category",
+      "priority" : 6000,
+      "topValues" : [ {
+         "code" : "cos_17.5.3",
+         "count" : 1,
+         "name" : "Accesorios",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_17.5.3"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_17.5.3"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_24.1.1",
+         "count" : 1,
+         "name" : "Alimento y Premios para Perro",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_24.1.1"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_24.1.1"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_4.1.3",
+         "count" : 1,
+         "name" : "Almohadas y Cojínes",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_4.1.3"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_4.1.3"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.1.5",
+         "count" : 4,
+         "name" : "Anillos de Piedras Preciosas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.1.5"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.1.5"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.1.6",
+         "count" : 1,
+         "name" : "Anillos de Piedras Semipreciosas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.1.6"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.1.6"
+         },
+         "selected" : false
+      } ],
+      "translatable" : true,
+      "values" : [ {
+         "code" : "cos_17.5.3",
+         "count" : 1,
+         "name" : "Accesorios",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_17.5.3"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_17.5.3"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_24.1.1",
+         "count" : 1,
+         "name" : "Alimento y Premios para Perro",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_24.1.1"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_24.1.1"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_4.1.3",
+         "count" : 1,
+         "name" : "Almohadas y Cojínes",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_4.1.3"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_4.1.3"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.1.5",
+         "count" : 4,
+         "name" : "Anillos de Piedras Preciosas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.1.5"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.1.5"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.1.6",
+         "count" : 1,
+         "name" : "Anillos de Piedras Semipreciosas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.1.6"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.1.6"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.2.4",
+         "count" : 2,
+         "name" : "Aretes de Diamantes",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.2.4"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.2.4"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.2.3",
+         "count" : 1,
+         "name" : "Aretes de Perlas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.2.3"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.2.3"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.2.6",
+         "count" : 1,
+         "name" : "Aretes de Piedras Semipreciosas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.2.6"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.2.6"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_1.4.3",
+         "count" : 2,
+         "name" : "Audífonos y Auriculares",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_1.4.3"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_1.4.3"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_6.4.1",
+         "count" : 1,
+         "name" : "Baterías y Sartenes",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_6.4.1"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_6.4.1"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_20.1.15",
+         "count" : 1,
+         "name" : "Belleza y Cuidado Personal",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_20.1.15"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_20.1.15"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_21.3.2",
+         "count" : 1,
+         "name" : "Blend",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_21.3.2"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_21.3.2"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_16.6.1",
+         "count" : 1,
+         "name" : "Botes de Basura",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_16.6.1"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_16.6.1"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_20.1.4",
+         "count" : 1,
+         "name" : "Café, Té y Endulzantes",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_20.1.4"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_20.1.4"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_1.3.1",
+         "count" : 7,
+         "name" : "Celulares",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_1.3.1"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_1.3.1"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_8.5.1",
+         "count" : 1,
+         "name" : "Cobertizos",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_8.5.1"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_8.5.1"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.4.4",
+         "count" : 2,
+         "name" : "Collares de Diamantes",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.4.4"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.4.4"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.4.1",
+         "count" : 1,
+         "name" : "Collares de Oro",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.4.1"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.4.1"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.4.3",
+         "count" : 2,
+         "name" : "Collares de Perlas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.4.3"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.4.3"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.4.6",
+         "count" : 2,
+         "name" : "Collares de Piedras Semipreciosas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.4.6"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.4.6"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_22.2.4",
+         "count" : 1,
+         "name" : "Cuidado Personal",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_22.2.4"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_22.2.4"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_9.1.5",
+         "count" : 1,
+         "name" : "Estaciones de Gimnasio",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_9.1.5"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_9.1.5"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_17.3.2",
+         "count" : 1,
+         "name" : "Herramientas y Gabinetes",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_17.3.2"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_17.3.2"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_21.2.6",
+         "count" : 1,
+         "name" : "Italia",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_21.2.6"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_21.2.6"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_20.1.3",
+         "count" : 1,
+         "name" : "Leches y Bebidas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_20.1.3"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_20.1.3"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_20.1.19",
+         "count" : 2,
+         "name" : "Limpieza",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_20.1.19"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_20.1.19"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_17.2.1",
+         "count" : 1,
+         "name" : "Limpieza Automotriz",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_17.2.1"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_17.2.1"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_20.1.18",
+         "count" : 1,
+         "name" : "Mascotas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_20.1.18"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_20.1.18"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_5.8.2",
+         "count" : 1,
+         "name" : "Matrimonial",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_5.8.2"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_5.8.2"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_20.1.5",
+         "count" : 1,
+         "name" : "Nueces y Botanas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_20.1.5"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_20.1.5"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_20.1.22",
+         "count" : 1,
+         "name" : "Pan y Pastelillos",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_20.1.22"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_20.1.22"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_13.5.2",
+         "count" : 1,
+         "name" : "Proteínas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_13.5.2"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_13.5.2"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.3.4",
+         "count" : 2,
+         "name" : "Pulseras de Diamantes",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.3.4"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.3.4"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.3.6",
+         "count" : 2,
+         "name" : "Pulseras de Piedras Semipreciosas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.3.6"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.3.6"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_8.6.1",
+         "count" : 1,
+         "name" : "Pérgolas",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_8.6.1"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_8.6.1"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_5.5.2",
+         "count" : 1,
+         "name" : "Sillas de Oficina y Estudio",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_5.5.2"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_5.5.2"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_22.2.3",
+         "count" : 1,
+         "name" : "Sillones y Aparatos de Masaje",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_22.2.3"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_22.2.3"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_14.6.3",
+         "count" : 6,
+         "name" : "Smart Watch",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_14.6.3"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_14.6.3"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_21.1.3",
+         "count" : 1,
+         "name" : "Vino Espumoso y Champagne",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_21.1.3"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_21.1.3"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_1.5.2",
+         "count" : 2,
+         "name" : "iPad",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_1.5.2"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_1.5.2"
+         },
+         "selected" : false
+      }, {
+         "code" : "cos_1.5.1",
+         "count" : 2,
+         "name" : "iPhone",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:category:cos_1.5.1"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Acategory%3Acos_1.5.1"
+         },
+         "selected" : false
+      } ],
+      "visible" : true
+   }, {
+      "category" : false,
+      "deliveryFacet" : false,
+      "displayName" : "Marca",
+      "multiSelect" : true,
+      "name" : "brand",
+      "priority" : 5000,
+      "topValues" : [ {
+         "code" : "Apple",
+         "count" : 4,
+         "name" : "Apple",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Apple"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3AApple"
+         },
+         "selected" : false
+      }, {
+         "code" : "Checkups",
+         "count" : 1,
+         "name" : "Checkups",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Checkups"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3ACheckups"
+         },
+         "selected" : false
+      }, {
+         "code" : "Dream Plush",
+         "count" : 1,
+         "name" : "Dream Plush",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Dream+Plush"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3ADream%2BPlush"
+         },
+         "selected" : false
+      }, {
+         "code" : "ECO",
+         "count" : 1,
+         "name" : "ECO",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:ECO"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3AECO"
+         },
+         "selected" : false
+      }, {
+         "code" : "Eurow",
+         "count" : 1,
+         "name" : "Eurow",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Eurow"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3AEurow"
+         },
+         "selected" : false
+      } ],
+      "translatable" : true,
+      "values" : [ {
+         "code" : "Apple",
+         "count" : 4,
+         "name" : "Apple",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Apple"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3AApple"
+         },
+         "selected" : false
+      }, {
+         "code" : "Checkups",
+         "count" : 1,
+         "name" : "Checkups",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Checkups"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3ACheckups"
+         },
+         "selected" : false
+      }, {
+         "code" : "Dream Plush",
+         "count" : 1,
+         "name" : "Dream Plush",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Dream+Plush"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3ADream%2BPlush"
+         },
+         "selected" : false
+      }, {
+         "code" : "ECO",
+         "count" : 1,
+         "name" : "ECO",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:ECO"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3AECO"
+         },
+         "selected" : false
+      }, {
+         "code" : "Eurow",
+         "count" : 1,
+         "name" : "Eurow",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Eurow"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3AEurow"
+         },
+         "selected" : false
+      }, {
+         "code" : "HexClad ",
+         "count" : 1,
+         "name" : "HexClad ",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:HexClad+"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3AHexClad%2B"
+         },
+         "selected" : false
+      }, {
+         "code" : "Inspire Fitness",
+         "count" : 1,
+         "name" : "Inspire Fitness",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Inspire+Fitness"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3AInspire%2BFitness"
+         },
+         "selected" : false
+      }, {
+         "code" : "Kimberly Clark",
+         "count" : 1,
+         "name" : "Kimberly Clark",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Kimberly+Clark"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3AKimberly%2BClark"
+         },
+         "selected" : false
+      }, {
+         "code" : "Kirkland Signature",
+         "count" : 4,
+         "name" : "Kirkland Signature",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Kirkland+Signature"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3AKirkland%2BSignature"
+         },
+         "selected" : false
+      }, {
+         "code" : "Lifetime",
+         "count" : 1,
+         "name" : "Lifetime",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Lifetime"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3ALifetime"
+         },
+         "selected" : false
+      }, {
+         "code" : "Osaki",
+         "count" : 1,
+         "name" : "Osaki",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Osaki"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3AOsaki"
+         },
+         "selected" : false
+      }, {
+         "code" : "Powerbuilt ",
+         "count" : 1,
+         "name" : "Powerbuilt ",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Powerbuilt+"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3APowerbuilt%2B"
+         },
+         "selected" : false
+      }, {
+         "code" : "Premier Protein",
+         "count" : 1,
+         "name" : "Premier Protein",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Premier+Protein"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3APremier%2BProtein"
+         },
+         "selected" : false
+      }, {
+         "code" : "Samsung",
+         "count" : 10,
+         "name" : "Samsung",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Samsung"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3ASamsung"
+         },
+         "selected" : false
+      }, {
+         "code" : "Sealy",
+         "count" : 1,
+         "name" : "Sealy",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Sealy"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3ASealy"
+         },
+         "selected" : false
+      }, {
+         "code" : "Silk'n",
+         "count" : 1,
+         "name" : "Silk'n",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Silk%27n"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3ASilk%2527n"
+         },
+         "selected" : false
+      }, {
+         "code" : "Sugar Bowl Bakery",
+         "count" : 1,
+         "name" : "Sugar Bowl Bakery",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Sugar+Bowl+Bakery"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3ASugar%2BBowl%2BBakery"
+         },
+         "selected" : false
+      }, {
+         "code" : "Yardistry",
+         "count" : 1,
+         "name" : "Yardistry",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:brand:Yardistry"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Abrand%3AYardistry"
+         },
+         "selected" : false
+      } ],
+      "visible" : true
+   }, {
+      "category" : false,
+      "deliveryFacet" : false,
+      "displayName" : "Precio",
+      "multiSelect" : true,
+      "name" : "visiblePrice",
+      "priority" : -8999,
+      "translatable" : true,
+      "values" : [ {
+         "code" : "0-999",
+         "count" : 13,
+         "name" : "0-999",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:visiblePrice:0-999"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3AvisiblePrice%3A0-999"
+         },
+         "selected" : false
+      }, {
+         "code" : "1000-4999",
+         "count" : 5,
+         "name" : "1000-4999",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:visiblePrice:1000-4999"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3AvisiblePrice%3A1000-4999"
+         },
+         "selected" : false
+      }, {
+         "code" : "5000-9999",
+         "count" : 10,
+         "name" : "5000-9999",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:visiblePrice:5000-9999"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3AvisiblePrice%3A5000-9999"
+         },
+         "selected" : false
+      }, {
+         "code" : "10000 y más",
+         "count" : 30,
+         "name" : "10000 y más",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:visiblePrice:10000+y+m%C3%A1s"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3AvisiblePrice%3A10000%2By%2Bm%25C3%25A1s"
+         },
+         "selected" : false
+      } ],
+      "visible" : true
+   }, {
+      "category" : false,
+      "deliveryFacet" : false,
+      "displayName" : "Nivel de Confort",
+      "multiSelect" : true,
+      "name" : "firmness",
+      "priority" : 100,
+      "translatable" : true,
+      "values" : [ {
+         "code" : "Firme",
+         "count" : 1,
+         "name" : "Firme",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:firmness:Firme"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Afirmness%3AFirme"
+         },
+         "selected" : false
+      }, {
+         "code" : "Medio",
+         "count" : 1,
+         "name" : "Medio",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:firmness:Medio"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Afirmness%3AMedio"
+         },
+         "selected" : false
+      } ],
+      "visible" : true
+   }, {
+      "category" : false,
+      "deliveryFacet" : false,
+      "displayName" : "Material",
+      "multiSelect" : true,
+      "name" : "material",
+      "priority" : 100,
+      "topValues" : [ {
+         "code" : " Acero inoxidable",
+         "count" : 1,
+         "name" : " Acero inoxidable",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:+Acero+inoxidable"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3A%2BAcero%2Binoxidable"
+         },
+         "selected" : false
+      }, {
+         "code" : "Acero",
+         "count" : 1,
+         "name" : "Acero",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Acero"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AAcero"
+         },
+         "selected" : false
+      }, {
+         "code" : "Acero Inoxidable",
+         "count" : 2,
+         "name" : "Acero Inoxidable",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Acero+Inoxidable"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AAcero%2BInoxidable"
+         },
+         "selected" : false
+      }, {
+         "code" : "Aluminio",
+         "count" : 4,
+         "name" : "Aluminio",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Aluminio"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AAluminio"
+         },
+         "selected" : false
+      }, {
+         "code" : "Espuma de Poliuretano, Memory Gel, Poliéster, Elastano",
+         "count" : 1,
+         "name" : "Espuma de Poliuretano, Memory Gel, Poliéster, Elastano",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Espuma+de+Poliuretano%2C+Memory+Gel%2C+Poli%C3%A9ster%2C+Elastano"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AEspuma%2Bde%2BPoliuretano%252C%2BMemory%2BGel%252C%2BPoli%25C3%25A9ster%252C%2BElastano"
+         },
+         "selected" : false
+      } ],
+      "translatable" : true,
+      "values" : [ {
+         "code" : " Acero inoxidable",
+         "count" : 1,
+         "name" : " Acero inoxidable",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:+Acero+inoxidable"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3A%2BAcero%2Binoxidable"
+         },
+         "selected" : false
+      }, {
+         "code" : "Acero",
+         "count" : 1,
+         "name" : "Acero",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Acero"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AAcero"
+         },
+         "selected" : false
+      }, {
+         "code" : "Acero Inoxidable",
+         "count" : 2,
+         "name" : "Acero Inoxidable",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Acero+Inoxidable"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AAcero%2BInoxidable"
+         },
+         "selected" : false
+      }, {
+         "code" : "Aluminio",
+         "count" : 4,
+         "name" : "Aluminio",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Aluminio"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AAluminio"
+         },
+         "selected" : false
+      }, {
+         "code" : "Espuma de Poliuretano, Memory Gel, Poliéster, Elastano",
+         "count" : 1,
+         "name" : "Espuma de Poliuretano, Memory Gel, Poliéster, Elastano",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Espuma+de+Poliuretano%2C+Memory+Gel%2C+Poli%C3%A9ster%2C+Elastano"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AEspuma%2Bde%2BPoliuretano%252C%2BMemory%2BGel%252C%2BPoli%25C3%25A9ster%252C%2BElastano"
+         },
+         "selected" : false
+      }, {
+         "code" : "Madera y aluminio",
+         "count" : 1,
+         "name" : "Madera y aluminio",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Madera+y+aluminio"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AMadera%2By%2Baluminio"
+         },
+         "selected" : false
+      }, {
+         "code" : "Memory Foam",
+         "count" : 1,
+         "name" : "Memory Foam",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Memory+Foam"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AMemory%2BFoam"
+         },
+         "selected" : false
+      }, {
+         "code" : "Oro Blanco 14K",
+         "count" : 1,
+         "name" : "Oro Blanco 14K",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Oro+Blanco+14K"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AOro%2BBlanco%2B14K"
+         },
+         "selected" : false
+      }, {
+         "code" : "Oro Blanco de 14K",
+         "count" : 6,
+         "name" : "Oro Blanco de 14K",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Oro+Blanco+de+14K"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AOro%2BBlanco%2Bde%2B14K"
+         },
+         "selected" : false
+      }, {
+         "code" : "Oro blanco de 14K",
+         "count" : 1,
+         "name" : "Oro blanco de 14K",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Oro+blanco+de+14K"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AOro%2Bblanco%2Bde%2B14K"
+         },
+         "selected" : false
+      }, {
+         "code" : "Oro de 14K",
+         "count" : 1,
+         "name" : "Oro de 14K",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Oro+de+14K"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3AOro%2Bde%2B14K"
+         },
+         "selected" : false
+      }, {
+         "code" : "Plastico, oro, cromo",
+         "count" : 1,
+         "name" : "Plastico, oro, cromo",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Plastico%2C+oro%2C+cromo"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3APlastico%252C%2Boro%252C%2Bcromo"
+         },
+         "selected" : false
+      }, {
+         "code" : "Policarbonato / Aluminio",
+         "count" : 2,
+         "name" : "Policarbonato / Aluminio",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:material:Policarbonato+%2F+Aluminio"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Amaterial%3APolicarbonato%2B%252F%2BAluminio"
+         },
+         "selected" : false
+      } ],
+      "visible" : true
+   }, {
+      "category" : false,
+      "deliveryFacet" : false,
+      "displayName" : "Tipo",
+      "multiSelect" : true,
+      "name" : "type",
+      "priority" : -9800,
+      "translatable" : true,
+      "values" : [ {
+         "code" : "Smartwatch",
+         "count" : 4,
+         "name" : "Smartwatch",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Smartwatch"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ASmartwatch"
+         },
+         "selected" : false
+      }, {
+         "code" : "Samsung Galaxy S26",
+         "count" : 2,
+         "name" : "Samsung Galaxy S26",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Samsung+Galaxy+S26"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ASamsung%2BGalaxy%2BS26"
+         },
+         "selected" : false
+      }, {
+         "code" : "Samsung Galaxy S26+",
+         "count" : 2,
+         "name" : "Samsung Galaxy S26+",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Samsung+Galaxy+S26%2B"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ASamsung%2BGalaxy%2BS26%252B"
+         },
+         "selected" : false
+      }, {
+         "code" : "Almohadas Memory Foam",
+         "count" : 1,
+         "name" : "Almohadas Memory Foam",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Almohadas+Memory+Foam"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3AAlmohadas%2BMemory%2BFoam"
+         },
+         "selected" : false
+      }, {
+         "code" : "Antibacterial ",
+         "count" : 1,
+         "name" : "Antibacterial ",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Antibacterial+"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3AAntibacterial%2B"
+         },
+         "selected" : false
+      }, {
+         "code" : "Bote de Basura",
+         "count" : 1,
+         "name" : "Bote de Basura",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Bote+de+Basura"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ABote%2Bde%2BBasura"
+         },
+         "selected" : false
+      }, {
+         "code" : "Cobertizo",
+         "count" : 1,
+         "name" : "Cobertizo",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Cobertizo"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ACobertizo"
+         },
+         "selected" : false
+      }, {
+         "code" : "Collar",
+         "count" : 1,
+         "name" : "Collar",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Collar"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ACollar"
+         },
+         "selected" : false
+      }, {
+         "code" : "Collares",
+         "count" : 1,
+         "name" : "Collares",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Collares"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ACollares"
+         },
+         "selected" : false
+      }, {
+         "code" : "Cuidado intimo",
+         "count" : 1,
+         "name" : "Cuidado intimo",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Cuidado+intimo"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ACuidado%2Bintimo"
+         },
+         "selected" : false
+      }, {
+         "code" : "Gazebo",
+         "count" : 1,
+         "name" : "Gazebo",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Gazebo"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3AGazebo"
+         },
+         "selected" : false
+      }, {
+         "code" : "Gimnasio multifuncional",
+         "count" : 1,
+         "name" : "Gimnasio multifuncional",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Gimnasio+multifuncional"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3AGimnasio%2Bmultifuncional"
+         },
+         "selected" : false
+      }, {
+         "code" : "Nueces de la india sabor caramelo y mantquilla",
+         "count" : 1,
+         "name" : "Nueces de la india sabor caramelo y mantquilla",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Nueces+de+la+india+sabor+caramelo+y+mantquilla"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ANueces%2Bde%2Bla%2Bindia%2Bsabor%2Bcaramelo%2By%2Bmantquilla"
+         },
+         "selected" : false
+      }, {
+         "code" : "Premios para Perro",
+         "count" : 1,
+         "name" : "Premios para Perro",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Premios+para+Perro"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3APremios%2Bpara%2BPerro"
+         },
+         "selected" : false
+      }, {
+         "code" : "Proteína Líquida",
+         "count" : 1,
+         "name" : "Proteína Líquida",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Prote%C3%ADna+L%C3%ADquida"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3AProte%25C3%25ADna%2BL%25C3%25ADquida"
+         },
+         "selected" : false
+      }, {
+         "code" : "Samsung Galaxy Buds 4",
+         "count" : 1,
+         "name" : "Samsung Galaxy Buds 4",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Samsung+Galaxy+Buds+4"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ASamsung%2BGalaxy%2BBuds%2B4"
+         },
+         "selected" : false
+      }, {
+         "code" : "Samsung Galaxy Buds 4 Pro",
+         "count" : 1,
+         "name" : "Samsung Galaxy Buds 4 Pro",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Samsung+Galaxy+Buds+4+Pro"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ASamsung%2BGalaxy%2BBuds%2B4%2BPro"
+         },
+         "selected" : false
+      }, {
+         "code" : "Sartén",
+         "count" : 1,
+         "name" : "Sartén",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Sart%C3%A9n"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ASart%25C3%25A9n"
+         },
+         "selected" : false
+      }, {
+         "code" : "Sillón para masaje",
+         "count" : 1,
+         "name" : "Sillón para masaje",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Sill%C3%B3n+para+masaje"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ASill%25C3%25B3n%2Bpara%2Bmasaje"
+         },
+         "selected" : false
+      }, {
+         "code" : "Topacio Azul",
+         "count" : 1,
+         "name" : "Topacio Azul",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:Topacio+Azul"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3ATopacio%2BAzul"
+         },
+         "selected" : false
+      }, {
+         "code" : "iPhone 18 Pro",
+         "count" : 1,
+         "name" : "iPhone 18 Pro",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:iPhone+18+Pro"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3AiPhone%2B18%2BPro"
+         },
+         "selected" : false
+      }, {
+         "code" : "​iPhone 17​e",
+         "count" : 1,
+         "name" : "​iPhone 17​e",
+         "query" : {
+            "query" : {
+               "value" : "iphone 15:relevance:type:%E2%80%8BiPhone+17%E2%80%8Be"
+            },
+            "url" : "/search?q=iphone+15%3Arelevance%3Atype%3A%25E2%2580%258BiPhone%2B17%25E2%2580%258Be"
+         },
+         "selected" : false
+      } ],
+      "visible" : true
+   } ],
+   "freeTextSearch" : "iphone 15",
+   "indexSelection" : true,
+   "pagination" : {
+      "currentPage" : 0,
+      "pageSize" : 5,
+      "sort" : "relevance",
+      "totalPages" : 12,
+      "totalResults" : 58
+   },
+   "products" : [ {
+      "addToCartFromPLPCategories" : [ {
+         "key" : "cos_17.2.1",
+         "value" : true
+      }, {
+         "key" : "cos_17.2",
+         "value" : true
+      }, {
+         "key" : "ahorrosEnLinea",
+         "value" : true
+      }, {
+         "key" : "cos_20",
+         "value" : true
+      }, {
+         "key" : "cos_23",
+         "value" : false
+      }, {
+         "key" : "costco",
+         "value" : true
+      }, {
+         "key" : "campaignESAVINGS",
+         "value" : false
+      }, {
+         "key" : "cos_20.1.19",
+         "value" : true
+      }, {
+         "key" : "cos_23.12",
+         "value" : false
+      }, {
+         "key" : "cos_23.12.1",
+         "value" : false
+      }, {
+         "key" : "cos_20.1",
+         "value" : true
+      }, {
+         "key" : "cos_17",
+         "value" : true
+      } ],
+      "addableToCartFromListingPage" : true,
+      "addonHasPDP" : false,
+      "as400Discount" : false,
+      "availableForPickup" : false,
+      "availableForPreorder" : false,
+      "averageRating" : 4.8,
+      "averageWeight" : "",
+      "basePrice" : {
+         "currencyIso" : "MXN",
+         "formattedPriceForSetOfTwoQuantities" : "$1,038.00",
+         "formattedValue" : "$519.00",
+         "intValue" : 51900,
+         "priceType" : "BUY",
+         "value" : 519.0
+      },
+      "boostScore" : 0.0,
+      "businessDelivery" : false,
+      "buyNowEnabled" : false,
+      "code" : "1509965",
+      "couponDiscount" : {
+         "discountEndDate" : "2026-11-09T05:59:59.999Z",
+         "discountStartDate" : "2026-11-02T06:00:00.000Z",
+         "discountType" : "default",
+         "discountValue" : 90.0,
+         "discountValueExcVat" : 0.0,
+         "formattedDiscountValue" : "$90.00",
+         "formattedDiscountValueExcVat" : "$0.00",
+         "hideDiscountCalculation" : false
+      },
+      "decalData" : [ {
+         "key" : "1",
+         "value" : {
+            "altText" : "Aprovecha Grandes Ahorros",
+            "position" : 1,
+            "type" : "DECAL",
+            "url" : "https://azure-na-images.contentstack.com/v3/assets/blt970087a473d9e2e7/blt4c25ef3508a4126a/decal-esavings"
+         }
+      } ],
+      "deliveryName" : "Grocery",
+      "departmentNumber" : "",
+      "description" : "<p>Scott&reg; toalla multiusos 10 rollos:</p>\n\n<ul>\n\t<li>Absorbe aceite y grasa</li>\n\t<li>Resistente, &uacute;til aun cuando est&aacute; h&uacute;meda</li>\n\t<li>Cada rollo tiene&nbsp;55 toallas</li>\n\t<li>Total de&nbsp;550 toallas</li>\n\t<li>Medida de la toalla: 27.9cm x 23.8cm</li>\n\t<li>Color&nbsp;azul</li>\n</ul>\n",
+      "discountEndDate" : "2026-11-09T05:59:59.999Z",
+      "discountPrice" : {
+         "currencyIso" : "MXN",
+         "formattedValue" : "$90.00",
+         "intValue" : 9000,
+         "priceType" : "BUY",
+         "value" : 90.0
+      },
+      "discountStartDate" : "2026-11-02T06:00:00.000Z",
+      "displayExVatPrice" : false,
+      "displayShippingIncludedTag" : false,
+      "englishName" : "",
+      "excludePaymentPlan" : false,
+      "expeditedDelivery" : false,
+      "groupId" : "grocery-cartgroup-mx",
+      "hasOtherOptionsVariants" : false,
+      "hasPricePerUnit" : false,
+      "hidePriceValue" : false,
+      "idVerificationEnabled" : false,
+      "images" : [ {
+         "format" : "thumbnail",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h4b/h42/69846919544862.jpg"
+      }, {
+         "format" : "product",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hba/h68/69846918299678.jpg"
+      }, {
+         "format" : "results",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h6d/h60/69846918758430.jpg"
+      }, {
+         "format" : "carousel",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h6d/h60/69846918758430.jpg"
+      }, {
+         "format" : "thumbnail-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h33/hbd/79611266236446.webp"
+      }, {
+         "format" : "product-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h02/hcc/79611266924574.webp"
+      }, {
+         "format" : "results-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h94/h60/79611267121182.webp"
+      }, {
+         "format" : "carousel-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h94/h60/79611267121182.webp"
+      } ],
+      "inMyWishlist" : false,
+      "inRestrictedZone" : true,
+      "ineligibleToLeaveUnattended" : false,
+      "isBaseProduct" : false,
+      "isExternalVendorProduct" : false,
+      "isExternalVendorVariantProduct" : false,
+      "isProductAvailable" : false,
+      "lexicalScore" : 0.0,
+      "maxOrderQuantity" : 500,
+      "maxOrderQuantityMode" : "PER_ORDER",
+      "maxOrderQuantityPerDateRange" : 0,
+      "membership" : false,
+      "membershipRestrictionApplied" : false,
+      "minOrderQuantity" : 1,
+      "minimumVerificationAge" : 0,
+      "modulusItemQuantity" : 1,
+      "multiProduct" : false,
+      "name" : "Scott Toalla Multiusos 10 Rollos",
+      "nameInSelectedLanguage" : "Scott Toalla Multiusos 10 Rollos",
+      "normalizedLexicalScore" : 0.0,
+      "normalizedVectorScore" : 0.0,
+      "numberOfReviews" : 30,
+      "overlayRequired" : false,
+      "pillData" : [ ],
+      "potentialPromotions" : [ ],
+      "price" : {
+         "currencyIso" : "MXN",
+         "formattedPriceForSetOfTwoQuantities" : "$858.00",
+         "formattedValue" : "$429.00",
+         "intValue" : 42900,
+         "priceType" : "BUY",
+         "value" : 429.0
+      },
+      "priceRange" : {
+      },
+      "productCartGroupAvailableInWarehouse" : false,
+      "purchasable" : true,
+      "randomWeight" : false,
+      "requiresAgeVerification" : false,
+      "restricted" : false,
+      "rollingTimePeriod" : 0,
+      "score" : 1.0,
+      "shippingIncluded" : false,
+      "shippingPurchaseMethodExceptionMessage" : "",
+      "shippingRestrictionApplied" : true,
+      "showEnergyRating" : false,
+      "showEstimatedDeliveryDate" : false,
+      "soldIndividually" : true,
+      "stock" : {
+         "contactDay" : 0,
+         "deliveryLeadTime" : 0,
+         "stockLevelStatus" : "inStock"
+      },
+      "tire" : false,
+      "url" : "/Ferreteria-Llantas-y-Automotriz/Cuidado-Automotriz/Limpieza-Automotriz/Scott-Toalla-Multiusos-10-Rollos/p/1509965",
+      "validExVatData" : true,
+      "vectorScore" : 0.0,
+      "volumePricesFlag" : false,
+      "warehouseFulfilled" : false,
+      "warehouseHidePriceValue" : false,
+      "warehousePickupOnly" : false
+   }, {
+      "addToCartFromPLPCategories" : [ {
+         "key" : "campaignMVM",
+         "value" : false
+      }, {
+         "key" : "cos_20",
+         "value" : true
+      }, {
+         "key" : "cos_23",
+         "value" : false
+      }, {
+         "key" : "cuponesEnLinea",
+         "value" : true
+      }, {
+         "key" : "costco",
+         "value" : true
+      }, {
+         "key" : "cos_20.1.19",
+         "value" : true
+      }, {
+         "key" : "cos_23.24.5",
+         "value" : false
+      }, {
+         "key" : "cos_23.24",
+         "value" : false
+      }, {
+         "key" : "cos_20.1",
+         "value" : true
+      } ],
+      "addableToCartFromListingPage" : true,
+      "addonHasPDP" : false,
+      "as400Discount" : false,
+      "availableForPickup" : false,
+      "availableForPreorder" : false,
+      "averageRating" : 4.9,
+      "averageWeight" : "",
+      "basePrice" : {
+         "currencyIso" : "MXN",
+         "formattedPriceForSetOfTwoQuantities" : "$498.00",
+         "formattedValue" : "$249.00",
+         "intValue" : 24900,
+         "priceType" : "BUY",
+         "value" : 249.0
+      },
+      "boostScore" : 0.0,
+      "businessDelivery" : false,
+      "buyNowEnabled" : false,
+      "code" : "1566448",
+      "couponDiscount" : {
+         "discountEndDate" : "2026-11-16T05:59:59.999Z",
+         "discountStartDate" : "2026-10-19T06:00:00.000Z",
+         "discountType" : "default",
+         "discountValue" : 37.35,
+         "discountValueExcVat" : 0.0,
+         "formattedDiscountValue" : "$37.35",
+         "formattedDiscountValueExcVat" : "$0.00",
+         "hideDiscountCalculation" : false
+      },
+      "decalData" : [ {
+         "key" : "1",
+         "value" : {
+            "altText" : "Cupón de Ahorro en Línea",
+            "position" : 1,
+            "type" : "DECAL",
+            "url" : "https://azure-na-images.contentstack.com/v3/assets/blt970087a473d9e2e7/blt167f580f35a08a7b/decal-mvm"
+         }
+      } ],
+      "deliveryName" : "Grocery",
+      "departmentNumber" : "",
+      "description" : "<p>Este jab&oacute;n de trastes con aroma a manzana verde, es una f&oacute;rmula concentrada que ayuda a limpiar m&aacute;s platos con menos jab&oacute;n.</p>\n\n<p>Su f&oacute;rmula ultra brillo y antibacterial es amigable con la piel de las manos. Desempe&ntilde;o de alta rendimiento.</p>\n",
+      "discountEndDate" : "2026-11-16T05:59:59.999Z",
+      "discountPrice" : {
+         "currencyIso" : "MXN",
+         "formattedValue" : "$37.35",
+         "intValue" : 3735,
+         "priceType" : "BUY",
+         "value" : 37.35
+      },
+      "discountStartDate" : "2026-10-19T06:00:00.000Z",
+      "displayExVatPrice" : false,
+      "displayShippingIncludedTag" : false,
+      "englishName" : "",
+      "excludePaymentPlan" : false,
+      "expeditedDelivery" : false,
+      "groupId" : "grocery-cartgroup-mx",
+      "hasOtherOptionsVariants" : false,
+      "hasPricePerUnit" : false,
+      "hidePriceValue" : false,
+      "idVerificationEnabled" : false,
+      "images" : [ {
+         "format" : "thumbnail",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h5e/hed/184995810443294.jpg"
+      }, {
+         "format" : "product",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h4c/hf7/184995808935966.jpg"
+      }, {
+         "format" : "results",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hf2/h01/184995809394718.jpg"
+      }, {
+         "format" : "carousel",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hf2/h01/184995809394718.jpg"
+      }, {
+         "format" : "thumbnail-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hbe/h41/184995811622942.webp"
+      }, {
+         "format" : "product-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h2c/he1/184995812278302.webp"
+      }, {
+         "format" : "results-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h87/h32/184995812737054.webp"
+      }, {
+         "format" : "carousel-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h87/h32/184995812737054.webp"
+      } ],
+      "inMyWishlist" : false,
+      "inRestrictedZone" : true,
+      "ineligibleToLeaveUnattended" : false,
+      "isBaseProduct" : false,
+      "isExternalVendorProduct" : false,
+      "isExternalVendorVariantProduct" : false,
+      "isProductAvailable" : false,
+      "lexicalScore" : 0.0,
+      "maxOrderQuantity" : 500,
+      "maxOrderQuantityMode" : "PER_ORDER",
+      "maxOrderQuantityPerDateRange" : 0,
+      "membership" : false,
+      "membershipRestrictionApplied" : false,
+      "minOrderQuantity" : 1,
+      "minimumVerificationAge" : 0,
+      "modulusItemQuantity" : 1,
+      "multiProduct" : false,
+      "name" : "Kirkland Signature Jabón Antibacterial para Trastes 2.6 l",
+      "nameInSelectedLanguage" : "Kirkland Signature Jabón Antibacterial para Trastes 2.6 l",
+      "normalizedLexicalScore" : 0.0,
+      "normalizedVectorScore" : 0.0,
+      "numberOfReviews" : 12,
+      "overlayRequired" : false,
+      "pillData" : [ ],
+      "potentialPromotions" : [ ],
+      "price" : {
+         "currencyIso" : "MXN",
+         "formattedPriceForSetOfTwoQuantities" : "$423.30",
+         "formattedValue" : "$211.65",
+         "intValue" : 21165,
+         "priceType" : "BUY",
+         "value" : 211.65
+      },
+      "priceRange" : {
+      },
+      "productCartGroupAvailableInWarehouse" : false,
+      "purchasable" : true,
+      "randomWeight" : false,
+      "requiresAgeVerification" : false,
+      "restricted" : false,
+      "rollingTimePeriod" : 0,
+      "score" : 1.0,
+      "shippingIncluded" : false,
+      "shippingPurchaseMethodExceptionMessage" : "",
+      "shippingRestrictionApplied" : true,
+      "showEnergyRating" : false,
+      "showEstimatedDeliveryDate" : false,
+      "soldIndividually" : true,
+      "stock" : {
+         "contactDay" : 0,
+         "deliveryLeadTime" : 0,
+         "stockLevelStatus" : "inStock"
+      },
+      "tire" : false,
+      "url" : "/Grocery/Grocery/Limpieza/Kirkland-Signature-Jabon-Antibacterial-para-Trastes-26-l/p/1566448",
+      "validExVatData" : true,
+      "vectorScore" : 0.0,
+      "volumePricesFlag" : false,
+      "warehouseFulfilled" : false,
+      "warehouseHidePriceValue" : false,
+      "warehousePickupOnly" : false
+   }, {
+      "addToCartFromPLPCategories" : [ {
+         "key" : "cos_23.25",
+         "value" : false
+      }, {
+         "key" : "cos_20",
+         "value" : true
+      }, {
+         "key" : "cos_23",
+         "value" : false
+      }, {
+         "key" : "costco",
+         "value" : true
+      }, {
+         "key" : "cos_23.25.2",
+         "value" : false
+      }, {
+         "key" : "cos_20.1.18",
+         "value" : true
+      }, {
+         "key" : "cos_24.1",
+         "value" : true
+      }, {
+         "key" : "cos_24",
+         "value" : true
+      }, {
+         "key" : "preciosEspeciales",
+         "value" : true
+      }, {
+         "key" : "cos_24.1.1",
+         "value" : true
+      }, {
+         "key" : "cos_20.1",
+         "value" : true
+      }, {
+         "key" : "campaignSPECIAL_PRICE",
+         "value" : false
+      } ],
+      "addableToCartFromListingPage" : true,
+      "addonHasPDP" : false,
+      "as400Discount" : false,
+      "availableForPickup" : false,
+      "availableForPreorder" : false,
+      "averageRating" : 4.9,
+      "averageWeight" : "",
+      "basePrice" : {
+         "currencyIso" : "MXN",
+         "formattedPriceForSetOfTwoQuantities" : "$798.00",
+         "formattedValue" : "$399.00",
+         "intValue" : 39900,
+         "priceType" : "BUY",
+         "value" : 399.0
+      },
+      "boostScore" : 0.0,
+      "businessDelivery" : false,
+      "buyNowEnabled" : false,
+      "code" : "157450",
+      "couponDiscount" : {
+         "discountEndDate" : "2026-11-09T05:59:59.999Z",
+         "discountStartDate" : "2026-11-03T06:00:00.000Z",
+         "discountType" : "default",
+         "discountValue" : 70.0,
+         "discountValueExcVat" : 0.0,
+         "formattedDiscountValue" : "$70.00",
+         "formattedDiscountValueExcVat" : "$0.00",
+         "hideDiscountCalculation" : false
+      },
+      "decalData" : [ {
+         "key" : "1",
+         "value" : {
+            "altText" : "null",
+            "position" : 1,
+            "type" : "DECAL",
+            "url" : "https://azure-na-images.contentstack.com/v3/assets/blt970087a473d9e2e7/blt4c25ef3508a4126a/decal-esavings"
+         }
+      } ],
+      "deliveryName" : "Grocery",
+      "departmentNumber" : "",
+      "description" : "<p><em><strong>Checkups:</strong></em></p><ul><li>Botanas para perros con edad mayor a 6 meses.</li><li>Botana para perro que ayuda a reducir el sarro y la placa.</li><li>Contiene &aacute;cidos grasos Omega-3, son f&aacute;ciles de digerir y refrescan el aliento de su mascota.</li><li>Ayuda a refrescar el aliento.</li><li>Altamente digeribles.</li><li>Sin gluten de trigo.</li><li>Para perros de 9.1kg en adelante.</li><li>F&aacute;cil de partir.</li><li>No contiene conservadores sint&eacute;ticos ni pl&aacute;sticos. La apariencia y el color del producto pueden variar debido a los ingredientes naturales.</li></ul>",
+      "discountEndDate" : "2026-11-09T05:59:59.999Z",
+      "discountPrice" : {
+         "currencyIso" : "MXN",
+         "formattedValue" : "$70.00",
+         "intValue" : 7000,
+         "priceType" : "BUY",
+         "value" : 70.0
+      },
+      "discountStartDate" : "2026-11-03T06:00:00.000Z",
+      "displayExVatPrice" : false,
+      "displayShippingIncludedTag" : false,
+      "englishName" : "",
+      "excludePaymentPlan" : false,
+      "expeditedDelivery" : false,
+      "groupId" : "grocery-cartgroup-mx",
+      "hasOtherOptionsVariants" : false,
+      "hasPricePerUnit" : false,
+      "hidePriceValue" : false,
+      "idVerificationEnabled" : false,
+      "images" : [ {
+         "format" : "thumbnail",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/he3/hec/80057555058718.webp"
+      }, {
+         "format" : "product",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h4d/h27/80057554862110.webp"
+      }, {
+         "format" : "results",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h23/hda/80057554927646.webp"
+      }, {
+         "format" : "carousel",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h23/hda/80057554927646.webp"
+      }, {
+         "format" : "thumbnail-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hbd/hee/80057556074526.webp"
+      }, {
+         "format" : "product-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hef/hdf/80057556762654.webp"
+      }, {
+         "format" : "results-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hc5/hab/80057557123102.webp"
+      }, {
+         "format" : "carousel-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hc5/hab/80057557123102.webp"
+      } ],
+      "inMyWishlist" : false,
+      "inRestrictedZone" : true,
+      "ineligibleToLeaveUnattended" : false,
+      "isBaseProduct" : false,
+      "isExternalVendorProduct" : false,
+      "isExternalVendorVariantProduct" : false,
+      "isProductAvailable" : false,
+      "lexicalScore" : 0.0,
+      "maxOrderQuantity" : 500,
+      "maxOrderQuantityMode" : "PER_ORDER",
+      "maxOrderQuantityPerDateRange" : 0,
+      "membership" : false,
+      "membershipRestrictionApplied" : false,
+      "minOrderQuantity" : 1,
+      "minimumVerificationAge" : 0,
+      "modulusItemQuantity" : 1,
+      "multiProduct" : false,
+      "name" : "Checkups Premios para Perro 24 pzas",
+      "nameInSelectedLanguage" : "Checkups Premios para Perro 24 pzas",
+      "normalizedLexicalScore" : 0.0,
+      "normalizedVectorScore" : 0.0,
+      "numberOfReviews" : 36,
+      "overlayRequired" : false,
+      "pillData" : [ ],
+      "potentialPromotions" : [ ],
+      "price" : {
+         "currencyIso" : "MXN",
+         "formattedPriceForSetOfTwoQuantities" : "$658.00",
+         "formattedValue" : "$329.00",
+         "intValue" : 32900,
+         "priceType" : "BUY",
+         "value" : 329.0
+      },
+      "priceRange" : {
+      },
+      "productCartGroupAvailableInWarehouse" : false,
+      "purchasable" : true,
+      "randomWeight" : false,
+      "requiresAgeVerification" : false,
+      "restricted" : false,
+      "rollingTimePeriod" : 0,
+      "score" : 1.0,
+      "shippingIncluded" : false,
+      "shippingPurchaseMethodExceptionMessage" : "",
+      "shippingRestrictionApplied" : true,
+      "showEnergyRating" : false,
+      "showEstimatedDeliveryDate" : false,
+      "soldIndividually" : true,
+      "stock" : {
+         "contactDay" : 0,
+         "deliveryLeadTime" : 0,
+         "stockLevelStatus" : "inStock"
+      },
+      "tire" : false,
+      "url" : "/Grocery/Grocery/Mascotas/Checkups-Premios-para-Perro-24-pzas/p/157450",
+      "validExVatData" : true,
+      "vectorScore" : 0.0,
+      "volumePricesFlag" : false,
+      "warehouseFulfilled" : false,
+      "warehouseHidePriceValue" : false,
+      "warehousePickupOnly" : false
+   }, {
+      "addToCartFromPLPCategories" : [ {
+         "key" : "cos_13.5",
+         "value" : true
+      }, {
+         "key" : "cos_20",
+         "value" : true
+      }, {
+         "key" : "costco",
+         "value" : true
+      }, {
+         "key" : "cos_13",
+         "value" : true
+      }, {
+         "key" : "cos_13.5.2",
+         "value" : true
+      }, {
+         "key" : "cos_20.1",
+         "value" : true
+      }, {
+         "key" : "cos_20.1.15",
+         "value" : true
+      } ],
+      "addableToCartFromListingPage" : true,
+      "addonHasPDP" : false,
+      "as400Discount" : false,
+      "availableForPickup" : false,
+      "availableForPreorder" : false,
+      "averageRating" : 4.8,
+      "averageWeight" : "",
+      "basePrice" : {
+         "currencyIso" : "MXN",
+         "formattedPriceForSetOfTwoQuantities" : "$1,738.00",
+         "formattedValue" : "$869.00",
+         "intValue" : 86900,
+         "priceType" : "BUY",
+         "value" : 869.0
+      },
+      "boostScore" : 0.0,
+      "businessDelivery" : false,
+      "buyNowEnabled" : false,
+      "code" : "153002",
+      "couponDiscount" : {
+         "discountType" : "default",
+         "hideDiscountCalculation" : false
+      },
+      "deliveryName" : "Grocery",
+      "departmentNumber" : "",
+      "description" : "<p>Creemos que todos debemos vivir una vida sana y activa,&nbsp; la nutrici&oacute;n es el fundamento de esa vida, sin embargo sabemos que comer sanamente y mantenerse activo es un reto en la rutina diaria.</p>\n\n<p>Premier Protein es el aliado en tu meta de mejorar tu salud y nutrici&oacute;n, te ayuda a controlar el hambre y recargar tu energ&iacute;a con el beneficio de ser un producto sin demasiada grasa o calor&iacute;as.</p>\n\n<p>Disfrute de tu bebida como un bocadillo saludable, son perfectas para un desayuno r&aacute;pido, una merienda o para recargar tu energ&iacute;a antes o despu&eacute;s del entrenamiento, son deliciosas por s&iacute; mismas, como base en batidos, o en cereales calientes o fr&iacute;os.<br />\n<br />\nLas bebidas Premier Protein vienen en envases de Tetra Pak, respetuosos al medio ambiente, con tapas convenientes y resellables, en cada empaque encontraras:</p>\n\n<ul>\n\t<li>18 envases de 325ml cada una.</li>\n\t<li>30 gramos de prote&iacute;na con todos los amino&aacute;cidos esenciales</li>\n\t<li>160 calor&iacute;as, bajo en grasa</li>\n\t<li>&nbsp;1 g de az&uacute;car</li>\n\t<li>5 g de carbohidratos</li>\n\t<li>24 vitaminas y minerales que son una excelente fuente de calcio<br />\n\t&nbsp;</li>\n</ul>\n",
+      "displayExVatPrice" : false,
+      "displayShippingIncludedTag" : false,
+      "englishName" : "",
+      "excludePaymentPlan" : false,
+      "expeditedDelivery" : false,
+      "groupId" : "grocery-cartgroup-mx",
+      "hasOtherOptionsVariants" : false,
+      "hasPricePerUnit" : false,
+      "hidePriceValue" : false,
+      "idVerificationEnabled" : false,
+      "images" : [ {
+         "format" : "thumbnail",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h0a/h39/68704587841566.jpg"
+      }, {
+         "format" : "product",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hbe/h28/68704587120670.jpg"
+      }, {
+         "format" : "results",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h5b/hd9/68704587317278.jpg"
+      }, {
+         "format" : "carousel",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h5b/hd9/68704587317278.jpg"
+      }, {
+         "format" : "thumbnail-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hb3/h02/79526677544990.webp"
+      }, {
+         "format" : "product-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h54/h69/79526678265886.webp"
+      }, {
+         "format" : "results-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h40/h3a/79526678724638.webp"
+      }, {
+         "format" : "carousel-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h40/h3a/79526678724638.webp"
+      } ],
+      "inMyWishlist" : false,
+      "inRestrictedZone" : true,
+      "ineligibleToLeaveUnattended" : false,
+      "isBaseProduct" : false,
+      "isExternalVendorProduct" : false,
+      "isExternalVendorVariantProduct" : false,
+      "isProductAvailable" : false,
+      "lexicalScore" : 0.0,
+      "maxOrderQuantity" : 500,
+      "maxOrderQuantityMode" : "PER_ORDER",
+      "maxOrderQuantityPerDateRange" : 0,
+      "membership" : false,
+      "membershipRestrictionApplied" : false,
+      "minOrderQuantity" : 1,
+      "minimumVerificationAge" : 0,
+      "modulusItemQuantity" : 1,
+      "multiProduct" : false,
+      "name" : "Premier Protein Bebida con Proteína 18 envases de 325 ml",
+      "nameInSelectedLanguage" : "Premier Protein Bebida con Proteína 18 envases de 325 ml",
+      "normalizedLexicalScore" : 0.0,
+      "normalizedVectorScore" : 0.0,
+      "numberOfReviews" : 40,
+      "overlayRequired" : false,
+      "potentialPromotions" : [ ],
+      "price" : {
+         "currencyIso" : "MXN",
+         "formattedPriceForSetOfTwoQuantities" : "$1,738.00",
+         "formattedValue" : "$869.00",
+         "intValue" : 86900,
+         "priceType" : "BUY",
+         "value" : 869.0
+      },
+      "priceRange" : {
+      },
+      "productCartGroupAvailableInWarehouse" : false,
+      "purchasable" : true,
+      "randomWeight" : false,
+      "requiresAgeVerification" : false,
+      "restricted" : false,
+      "rollingTimePeriod" : 0,
+      "score" : 1.0,
+      "shippingIncluded" : false,
+      "shippingPurchaseMethodExceptionMessage" : "",
+      "shippingRestrictionApplied" : true,
+      "showEnergyRating" : false,
+      "showEstimatedDeliveryDate" : false,
+      "soldIndividually" : true,
+      "stock" : {
+         "contactDay" : 0,
+         "deliveryLeadTime" : 0,
+         "stockLevelStatus" : "inStock"
+      },
+      "tire" : false,
+      "url" : "/Salud-y-Belleza/Vitaminas-Proteinas-y-Suplementos/Proteinas/Premier-Protein-Bebida-con-Proteina-18-envases-de-325-ml/p/153002",
+      "validExVatData" : true,
+      "vectorScore" : 0.0,
+      "volumePricesFlag" : false,
+      "warehouseFulfilled" : false,
+      "warehouseHidePriceValue" : false,
+      "warehousePickupOnly" : false
+   }, {
+      "addToCartFromPLPCategories" : [ {
+         "key" : "cos_4.1.3",
+         "value" : true
+      }, {
+         "key" : "exclusivosEnLinea",
+         "value" : true
+      }, {
+         "key" : "campaignEXCLUSIVE_ONLINE",
+         "value" : false
+      }, {
+         "key" : "costco",
+         "value" : true
+      }, {
+         "key" : "cos_4",
+         "value" : true
+      }, {
+         "key" : "cos_4.1",
+         "value" : true
+      } ],
+      "addableToCartFromListingPage" : true,
+      "addonHasPDP" : false,
+      "as400Discount" : false,
+      "availableForPickup" : false,
+      "availableForPreorder" : false,
+      "averageRating" : 4.2,
+      "averageWeight" : "",
+      "basePrice" : {
+         "currencyIso" : "MXN",
+         "formattedPriceForSetOfTwoQuantities" : "$1,338.00",
+         "formattedValue" : "$669.00",
+         "intValue" : 66900,
+         "priceType" : "BUY",
+         "value" : 669.0
+      },
+      "boostScore" : 0.0,
+      "businessDelivery" : false,
+      "buyNowEnabled" : false,
+      "code" : "1575376",
+      "couponDiscount" : {
+         "discountType" : "default",
+         "hideDiscountCalculation" : false
+      },
+      "decalData" : [ {
+         "key" : "3",
+         "value" : {
+            "altText" : "null",
+            "position" : 3,
+            "type" : "DECAL",
+            "url" : "https://azure-na-images.contentstack.com/v3/assets/blt970087a473d9e2e7/blte403943c71d3b1d9/decal-onlineExclusive"
+         }
+      } ],
+      "departmentNumber" : "",
+      "description" : "<p>Caracter&iacute;sticas del art&iacute;culo:</p>\n\n<ul>\n\t<li>Incluye: 2 piezas</li>\n\t<li>Fundas frescas al tacto</li>\n\t<li>Se expanden a tama&ntilde;o queen: 40.64cm x 71.12cm</li>\n\t<li>Liberadora de presi&oacute;n</li>\n\t<li>Fundas removibles y lavables a m&aacute;quina</li>\n\t<li>Memory Foam</li>\n</ul>\n\n<p>*No incluye accesorios</p>\n\n<p>Fotos con fin ilustrativo&nbsp;</p>\n",
+      "displayExVatPrice" : false,
+      "displayShippingIncludedTag" : false,
+      "englishName" : "",
+      "excludePaymentPlan" : false,
+      "expeditedDelivery" : false,
+      "groupId" : "default-cartgroup-mexico",
+      "hasOtherOptionsVariants" : false,
+      "hasPricePerUnit" : false,
+      "hidePriceValue" : false,
+      "idVerificationEnabled" : false,
+      "images" : [ {
+         "format" : "thumbnail",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hb1/hc7/136834999353374.jpg"
+      }, {
+         "format" : "product",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h9b/hc7/136834998501406.jpg"
+      }, {
+         "format" : "results",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h51/h5a/136834998763550.jpg"
+      }, {
+         "format" : "carousel",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h51/h5a/136834998763550.jpg"
+      }, {
+         "format" : "thumbnail-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/ha9/h5e/136835001712670.webp"
+      }, {
+         "format" : "product-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/h18/hfe/136835002368030.webp"
+      }, {
+         "format" : "results-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hcd/h52/136835002564638.webp"
+      }, {
+         "format" : "carousel-webp",
+         "imageType" : "PRIMARY",
+         "url" : "/medias/sys_master/products/hcd/h52/136835002564638.webp"
+      } ],
+      "inMyWishlist" : false,
+      "inRestrictedZone" : false,
+      "ineligibleToLeaveUnattended" : false,
+      "isBaseProduct" : false,
+      "isExternalVendorProduct" : false,
+      "isExternalVendorVariantProduct" : false,
+      "isProductAvailable" : false,
+      "lexicalScore" : 0.0,
+      "maxOrderQuantity" : 500,
+      "maxOrderQuantityMode" : "PER_ORDER",
+      "maxOrderQuantityPerDateRange" : 0,
+      "membership" : false,
+      "membershipRestrictionApplied" : false,
+      "minOrderQuantity" : 1,
+      "minimumVerificationAge" : 0,
+      "modulusItemQuantity" : 1,
+      "multiProduct" : false,
+      "name" : "Dream Plush, Juego de 2 Almohadas de Espuma de Memoria con Fundas Frescas al Tacto",
+      "nameInSelectedLanguage" : "Dream Plush, Juego de 2 Almohadas de Espuma de Memoria con Fundas Frescas al Tacto",
+      "normalizedLexicalScore" : 0.0,
+      "normalizedVectorScore" : 0.0,
+      "numberOfReviews" : 21,
+      "overlayRequired" : false,
+      "pillData" : [ ],
+      "potentialPromotions" : [ ],
+      "price" : {
+         "currencyIso" : "MXN",
+         "formattedPriceForSetOfTwoQuantities" : "$1,338.00",
+         "formattedValue" : "$669.00",
+         "intValue" : 66900,
+         "priceType" : "BUY",
+         "value" : 669.0
+      },
+      "priceRange" : {
+      },
+      "productCartGroupAvailableInWarehouse" : false,
+      "purchasable" : true,
+      "randomWeight" : false,
+      "requiresAgeVerification" : false,
+      "restricted" : false,
+      "rollingTimePeriod" : 0,
+      "score" : 1.0,
+      "shippingIncluded" : true,
+      "shippingPurchaseMethodExceptionMessage" : "",
+      "shippingRestrictionApplied" : false,
+      "showEnergyRating" : false,
+      "showEstimatedDeliveryDate" : false,
+      "soldIndividually" : true,
+      "stock" : {
+         "contactDay" : 0,
+         "deliveryLeadTime" : 0,
+         "stockLevelStatus" : "inStock"
+      },
+      "tire" : false,
+      "url" : "/Hogar-y-Bano/Blancos-del-Hogar/Almohadas-y-Cojines/Dream-Plush-Juego-de-2-Almohadas-de-Espuma-de-Memoria-con-Fundas-Frescas-al-Tacto/p/1575376",
+      "validExVatData" : true,
+      "vectorScore" : 0.0,
+      "volumePricesFlag" : false,
+      "warehouseFulfilled" : false,
+      "warehouseHidePriceValue" : false,
+      "warehousePickupOnly" : false
+   } ],
+   "sorts" : [ {
+      "code" : "relevance",
+      "name" : "Relevancia",
+      "selected" : true
+   }, {
+      "code" : "price-desc",
+      "name" : "Precio - Mayor a Menor",
+      "selected" : false
+   }, {
+      "code" : "price-asc",
+      "name" : "Precio - Menor a Mayor",
+      "selected" : false
+   }, {
+      "code" : "name-asc",
+      "name" : "Nombre - A-Z",
+      "selected" : false
+   }, {
+      "code" : "name-desc",
+      "name" : "Nombre - Z-A",
+      "selected" : false
+   }, {
+      "code" : "ratings-asc",
+      "name" : "Calificación - Menor a Mayor",
+      "selected" : false
+   }, {
+      "code" : "ratings-desc",
+      "name" : "Calificación - Mayor a Menor",
+      "selected" : false
+   } ]
+}

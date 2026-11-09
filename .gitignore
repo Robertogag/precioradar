@@ -1,0 +1,45 @@
+# Dependencias y compilados
+node_modules/
+dist/
+build/
+web-build/
+.expo/
+.expo-shared/
+.metro-health-check*
+
+# Llaves y configuración local: NUNCA al repositorio. Las de producción viven en Secret Manager.
+.env
+.env.*
+!.env.example
+!.env.production
+api/.env
+dominio.txt
+neon.txt
+*.local
+
+# Bitácoras y temporales
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.DS_Store
+Thumbs.db
+
+# Nativo (Expo)
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+ios/
+android/
+
+# Editor
+.vscode/
+.idea/
+
+# Material de origen del logo (fotos grandes) y video sin comprimir: se quedan fuera; en docs/ va el mp4 y el logo final
+visual aid/
+docs/demo.webm

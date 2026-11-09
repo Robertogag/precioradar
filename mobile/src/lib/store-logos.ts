@@ -1,0 +1,28 @@
+// Generado por scratchpad/logos/normalize-logos.mjs. React Native necesita require() estático por archivo.
+// Cada require() es un número (id del recurso): es lo que acepta <Image source> de expo-image.
+export const STORE_LOGOS: Record<string, number> = {
+  amazon: require('../../assets/stores/amazon.png') as number,
+  bodega: require('../../assets/stores/bodega.png') as number,
+  chedraui: require('../../assets/stores/chedraui.png') as number,
+  claroshop: require('../../assets/stores/claroshop.png') as number,
+  coppel: require('../../assets/stores/coppel.png') as number,
+  costco: require('../../assets/stores/costco.png') as number,
+  cyberpuerta: require('../../assets/stores/cyberpuerta.png') as number,
+  doto: require('../../assets/stores/doto.png') as number,
+  elektra: require('../../assets/stores/elektra.png') as number,
+  heb: require('../../assets/stores/heb.png') as number,
+  homedepot: require('../../assets/stores/homedepot.png') as number,
+  liverpool: require('../../assets/stores/liverpool.png') as number,
+  marti: require('../../assets/stores/marti.png') as number,
+  mercadolibre: require('../../assets/stores/mercadolibre.png') as number,
+  officedepot: require('../../assets/stores/officedepot.png') as number,
+  palacio: require('../../assets/stores/palacio.png') as number,
+  sally: require('../../assets/stores/sally.png') as number,
+  sams: require('../../assets/stores/sams.png') as number,
+  sanborns: require('../../assets/stores/sanborns.png') as number,
+  sears: require('../../assets/stores/sears.png') as number,
+  soriana: require('../../assets/stores/soriana.png') as number,
+  steren: require('../../assets/stores/steren.png') as number,
+  walmart: require('../../assets/stores/walmart.png') as number,
+  whirlpool: require('../../assets/stores/whirlpool.png') as number,
+};

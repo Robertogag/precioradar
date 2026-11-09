@@ -1,0 +1,27 @@
+// Generado por scratchpad/logos/normalize-logos.mjs. Tiendas con logotipo en public/stores/<id>.png.
+export const STORE_LOGOS: ReadonlySet<string> = new Set([
+  "amazon",
+  "bodega",
+  "chedraui",
+  "claroshop",
+  "coppel",
+  "costco",
+  "cyberpuerta",
+  "doto",
+  "elektra",
+  "heb",
+  "homedepot",
+  "liverpool",
+  "marti",
+  "mercadolibre",
+  "officedepot",
+  "palacio",
+  "sally",
+  "sams",
+  "sanborns",
+  "sears",
+  "soriana",
+  "steren",
+  "walmart",
+  "whirlpool"
+]);

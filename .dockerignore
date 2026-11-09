@@ -1,0 +1,16 @@
+# Lo que no va dentro de la imagen.
+**/node_modules
+**/dist
+**/.expo
+mobile
+api/test
+api/scripts
+web/scripts
+web/release
+**/*.log
+**/.env
+**/.env.*
+!**/.env.example
+.git
+*.md
+iniciar.cmd
