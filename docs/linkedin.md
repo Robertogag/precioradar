@@ -19,7 +19,7 @@ Lo que aprendí construyéndolo:
 Stack: TypeScript de punta a punta (Fastify, React, Expo), Postgres y Cloud Run.
 
 Pruébala: https://precioradar-701205043940.us-central1.run.app
-Código: github.com/<tu-usuario>/precioradar
+Código: github.com/Robertogag/precioradar
 
 #TypeScript #ReactNative #OpenSource #BuenFin #México
 
@@ -65,5 +65,5 @@ Gracias a quienes la probaron y mandaron correcciones.
 ## Notas para grabar o escribir
 
 - El video se genera con `scratchpad/shots/demo-video.mjs` (Playwright) contra producción; si se regraba, hacerlo con un producto con historial (Nintendo Switch 2).
-- Reemplazar `github.com/<tu-usuario>/precioradar` por la liga real del repositorio al crearlo.
+- Reemplazar `github.com/Robertogag/precioradar` por la liga real del repositorio al crearlo.
 - Si ya está el dominio, usar https://precioradar.mx en los tres textos.
