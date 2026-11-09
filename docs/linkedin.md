@@ -12,11 +12,11 @@ Hice PrecioRadar: buscas un producto y compara su precio en 21 tiendas de Méxic
 
 Lo que aprendí construyéndolo:
 
-• Mercado Libre y Amazon cerraron su búsqueda a apps externas. En vez de brincarme sus muros, el usuario abre la página en la app y el precio que ve se comparte con los demás, con fecha y con su permiso.
+• Mercado Libre cerró su búsqueda a apps externas y Amazon bloquea lecturas desde la nube. No me brinqué ningún muro: la app dice qué tienda no contestó y enseña el último precio visto, con fecha.
 • Agrupar "el mismo producto" entre tiendas con títulos distintos fue el problema difícil: ahí se fue la mayor parte del trabajo (y de las pruebas).
 • Arquitectura hexagonal con pruebas desde el día uno permitió cambiar reglas todos los días sin romper nada.
 
-Stack: TypeScript de punta a punta (Fastify, React, Expo), Postgres y Cloud Run.
+Stack: TypeScript de punta a punta (Fastify, React, Expo), Postgres y Cloud Run. La web ya está en línea; la app de celular está en pruebas.
 
 Pruébala: https://precioradar-701205043940.us-central1.run.app
 Código: github.com/Robertogag/precioradar
