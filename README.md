@@ -48,7 +48,7 @@ Busca un producto y compara su precio en 21 tiendas de México al mismo tiempo, 
 flowchart TB
   U[Persona] --> W[Web React · App Expo]
   W -->|/api/search| A
-  subgraph GCP[Google Cloud · us-central1]
+  subgraph GCP[GCP · Google Cloud Platform · us-central1]
     direction LR
     S[Cloud Scheduler<br/>refresco diario 6:00] --> A
     SM[Secret Manager<br/>credenciales] -.-> A
@@ -69,7 +69,7 @@ flowchart TB
   A --> T1
 ```
 
-Todo corre en **Google Cloud**: una sola imagen Docker en **Cloud Run** que sirve la API y la web, escala a cero cuando nadie entra y hasta cuatro instancias en picos; **Cloud SQL** (Postgres) guarda el historial; **Cloud Scheduler** dispara el refresco diario de las búsquedas más repetidas; **Secret Manager** guarda las credenciales (nunca en el código); **Cloud Build** construye la imagen desde el código fuente; **Cloud Monitoring** vigila `/api/health` cada cinco minutos y avisa por correo si deja de responder. El despliegue completo es un solo script idempotente, `desplegar-gcp.ps1`.
+Toda la infraestructura está en **GCP (Google Cloud Platform)**: una sola imagen Docker en **Cloud Run** que sirve la API y la web, escala a cero cuando nadie entra y hasta cuatro instancias en picos; **Cloud SQL** (Postgres) guarda el historial; **Cloud Scheduler** dispara el refresco diario de las búsquedas más repetidas; **Secret Manager** guarda las credenciales (nunca en el código); **Cloud Build** construye la imagen desde el código fuente; **Cloud Monitoring** vigila `/api/health` cada cinco minutos y avisa por correo si deja de responder. El despliegue completo es un solo script idempotente, `desplegar-gcp.ps1`.
 
 La API sigue **arquitectura hexagonal**: el *dominio* (texto, relevancia, agrupación, paquetes, recomendación) no conoce tiendas ni HTTP; la *aplicación* orquesta (búsqueda, historial, enlaces, observaciones); la *infraestructura* son los adaptadores de cada tienda, Postgres y el navegador; las *interfaces* son las rutas. Agregar una tienda VTEX, Shopify, Magento o WooCommerce es un renglón en `api/src/infrastructure/stores/registry.ts`.
 
@@ -104,7 +104,7 @@ Variables opcionales en `api/.env` (ver `api/.env.example`): `DATABASE_URL` para
 
 ## Despliegue
 
-Una sola imagen (`Dockerfile`, base oficial de Playwright con Chromium) corre en Cloud Run y sirve API y web. `desplegar-gcp.ps1` es idempotente: habilita APIs, crea la base, guarda credenciales en Secret Manager, construye con Cloud Build, despliega y programa el refresco diario con Cloud Scheduler. Los detalles, costos y cada decisión están en [`docs/BITACORA.md`](docs/BITACORA.md).
+Una sola imagen (`Dockerfile`, base oficial de Playwright con Chromium) corre en Cloud Run, en GCP, y sirve API y web. `desplegar-gcp.ps1` es idempotente: habilita APIs, crea la base, guarda credenciales en Secret Manager, construye con Cloud Build, despliega y programa el refresco diario con Cloud Scheduler. Los detalles, costos y cada decisión están en [`docs/BITACORA.md`](docs/BITACORA.md).
 
 ## Decisiones que vale la pena contar
 
@@ -128,7 +128,7 @@ MIT. Los logotipos de las tiendas pertenecen a sus dueños y se usan solo para i
 
 **PrecioRadar** searches a product across 21 Mexican stores at once, groups the same product even when stores name it differently, tells you where it costs less and whether a bundle is worth it, and keeps a daily price history (with up/down arrows) so you can tell a real deal from a fake one.
 
-Stack: TypeScript everywhere. Fastify API on Node 22 (hexagonal architecture, 111 tests), Vite + React 19 web, Expo SDK 58 mobile app, Postgres on Cloud SQL, one Docker image on Cloud Run (Playwright base, so a real Chromium reads the two stores whose pages render client-side), Cloud Scheduler for the daily refresh.
+Stack: TypeScript everywhere. Fastify API on Node 22 (hexagonal architecture, 111 tests), Vite + React 19 web, Expo SDK 58 mobile app, Postgres on Cloud SQL, one Docker image on Cloud Run (Playwright base, so a real Chromium reads the two stores whose pages render client-side), Cloud Scheduler for the daily refresh, all on GCP (Google Cloud Platform).
 
 Principles: public pages and APIs only, never bypass anti-bot walls; when a store blocks, say so. Mercado Libre closed its search API to third parties, so the mobile app lets the user open the product page and share the price they see, with consent and a timestamp. Amazon answers from the cloud about half the time, so the last good answer per store is remembered and shown with its age.
 
