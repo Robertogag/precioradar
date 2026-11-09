@@ -6,7 +6,7 @@ Tres publicaciones, una por semana aproximadamente. Un video o captura por publi
 
 ## Post 1 · Lanzamiento (antes del Buen Fin)
 
-**Adjuntar:** `docs/demo.mp4`, 24 segundos (1280×800), con música de fondo: "Let's All Dance This Christmas" de Michael Ramir C., de Mixkit (Stock Music Free License: uso libre en videos, comercial o no, sin atribución obligatoria). Alternativas ya mezcladas, fuera del repositorio, en `A:APP ROBERTisual aidideo-opcion-2-a-rockin-holiday.mp4` y `video-opcion-3-make-some-noise-this-christmas.mp4`.
+**Adjuntar:** `docs/demo.mp4`, 33 segundos (1280×800, cursor visible, movimientos suaves), con música de fondo: "Let's All Dance This Christmas" de Michael Ramir C., de Mixkit (Stock Music Free License: uso libre en videos, comercial o no, sin atribución obligatoria). Alternativas ya mezcladas, fuera del repositorio, en `A:APP ROBERTisual aidideo-opcion-2-a-rockin-holiday.mp4` y `video-opcion-3-make-some-noise-this-christmas.mp4`.
 
 Hice PrecioRadar: buscas un producto y compara su precio en 21 tiendas de México al mismo tiempo, con historial para saber si la "oferta" del Buen Fin es real.
 
