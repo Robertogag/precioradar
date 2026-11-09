@@ -47,13 +47,27 @@ Busca un producto y compara su precio en 21 tiendas de México al mismo tiempo, 
 ```mermaid
 flowchart LR
   U[Persona] -->|busca| W[Web React / App Expo]
-  W -->|/api/search| A[API Fastify · Node 22]
+  subgraph GCP[Google Cloud · us-central1]
+    direction LR
+    subgraph RUN[Cloud Run · una sola imagen Docker]
+      A[API Fastify · Node 22<br/>sirve también la web]
+      T3[Carril de navegador<br/>Chromium real: Coppel · Sears]
+    end
+    P[(Cloud SQL · Postgres<br/>historial de precios)]
+    S[Cloud Scheduler<br/>refresco diario 6:00]
+    SM[Secret Manager<br/>credenciales]
+  end
+  W -->|/api/search| A
+  A --> T3
   A -->|a la vez, con espera máxima| T1[Catálogos públicos<br/>VTEX · Shopify · Magento · WooCommerce]
   A --> T2[Páginas públicas<br/>Amazon · Liverpool · Cyberpuerta · Home Depot …]
-  A --> T3[Carril de navegador<br/>Chromium real: Coppel · Sears]
-  A -->|precios vistos| P[(Postgres · historial)]
+  A -->|precios vistos| P
+  S -->|cada mañana| A
+  SM -.-> A
   W -.->|precio que la persona ve<br/>al abrir Mercado Libre| A
 ```
+
+Todo corre en **Google Cloud**: una sola imagen Docker en **Cloud Run** que sirve la API y la web, escala a cero cuando nadie entra y hasta cuatro instancias en picos; **Cloud SQL** (Postgres) guarda el historial; **Cloud Scheduler** dispara el refresco diario de las búsquedas más repetidas; **Secret Manager** guarda las credenciales (nunca en el código); **Cloud Build** construye la imagen desde el código fuente; **Cloud Monitoring** vigila `/api/health` cada cinco minutos y avisa por correo si deja de responder. El despliegue completo es un solo script idempotente, `desplegar-gcp.ps1`.
 
 La API sigue **arquitectura hexagonal**: el *dominio* (texto, relevancia, agrupación, paquetes, recomendación) no conoce tiendas ni HTTP; la *aplicación* orquesta (búsqueda, historial, enlaces, observaciones); la *infraestructura* son los adaptadores de cada tienda, Postgres y el navegador; las *interfaces* son las rutas. Agregar una tienda VTEX, Shopify, Magento o WooCommerce es un renglón en `api/src/infrastructure/stores/registry.ts`.
 
