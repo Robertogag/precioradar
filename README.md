@@ -18,6 +18,8 @@ Busca un producto y compara su precio en 21 tiendas de México al mismo tiempo, 
 
 ## Qué hace
 
+<img src="docs/capturas/06-app-oscuro.png" align="right" width="230" alt="App de celular, tema oscuro: la consola más barata en Amazon y cuánto más cuesta en las demás tiendas">
+
 - **Busca en 21 tiendas a la vez** (Amazon, Liverpool, Suburbia, Costco, Elektra, Chedraui, Office Depot, Cyberpuerta, iShop, Doto, Steren, Game Planet, Coppel, Sears y más) y te dice **dónde cuesta menos**. Si una tienda tarda o falla, las demás no esperan, y la app te dice qué pasó con cada una.
 - **Agrupa el mismo producto** aunque cada tienda lo nombre distinto: "Nintendo Switch 2, 256GB, Wi-Fi, Negro" y "Consola Nintendo Switch 2 de 256 GB edición estándar" son el mismo producto; "16 Plus" no es "16"; una microSD "para Switch 2" no es la consola.
 - **Te dice qué te conviene**: el más barato, o el paquete que por poco más incluye un juego o una garantía.
@@ -26,9 +28,19 @@ Busca un producto y compara su precio en 21 tiendas de México al mismo tiempo, 
 - **Honesta con sus límites**: si una tienda no contestó ahora, enseña su último precio guardado con fecha y "sin verificar"; las tiendas que bloquean lectores automáticos aparecen como bloqueadas, con el motivo.
 - Tema claro y oscuro, español e inglés, web y app de celular (Expo).
 
-| Resultados | Historial | Teléfono |
-|---|---|---|
-| ![Resultados](docs/capturas/02-resultados-claro.png) | ![Historial](docs/capturas/04-historial-grafica.png) | ![Teléfono](docs/capturas/06-telefono-oscuro.png) |
+<br clear="right">
+
+<p align="center"><img src="docs/capturas/02-resultados-claro.png" width="100%" alt="Resultados de PlayStation 5: tiendas a la izquierda, una tarjeta por producto con la tienda más barata y cuánto más cuesta en las demás"></p>
+<p align="center"><sub>Un producto por tarjeta: la tienda más barata, cuánto más cuesta en las demás y qué te conviene.</sub></p>
+
+<p align="center"><img src="docs/capturas/04-historial-grafica.png" width="78%" alt="Historial de precios por tienda con flechas de bajó, subió o igual"></p>
+<p align="center"><sub>Historial por tienda: si bajó ▼, subió ▲ o sigue igual =, y el mínimo del periodo.</sub></p>
+
+<p align="center">
+  <img src="docs/capturas/03-tarjeta-oscuro.png" width="49%" alt="Tarjeta de producto en tema oscuro con el enlace a Mercado Libre">
+  <img src="docs/capturas/05-historial-tabla-oscuro.png" width="49%" alt="Tabla del historial en tema oscuro">
+</p>
+<p align="center"><sub>Tema oscuro: tarjeta con el enlace a Mercado Libre y tabla del historial.</sub></p>
 
 ## Cómo funciona
 
