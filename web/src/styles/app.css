@@ -891,6 +891,13 @@
     grid-area: store;
     align-self: start;
   }
+  /* En pantalla angosta el nombre de la tienda y la nota "precio visto hace…" se parten en renglones; nunca se cortan. */
+  .offer__name,
+  .offer__stale {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
   .offer__price {
     grid-area: price;
   }
