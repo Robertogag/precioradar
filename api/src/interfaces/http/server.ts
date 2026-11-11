@@ -6,6 +6,7 @@ import Fastify, { type FastifyInstance, type FastifyPluginAsync } from 'fastify'
 import { timingSafeEqual } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { PassThrough } from 'node:stream';
 import { z } from 'zod';
 import type {
   ApiError,
@@ -25,6 +26,7 @@ import type { RefreshJob } from '../../application/refreshJob.ts';
 import { EmptyQueryError, type SearchService } from '../../application/searchOffers.ts';
 import type { SuggestService } from '../../application/suggest.ts';
 import { isDay } from '../../domain/dates.ts';
+import { tokenize } from '../../domain/text.ts';
 import { isKnownCountry, isKnownState, listCountries } from '../../infrastructure/catalog/countries.ts';
 
 const flag = z
@@ -261,26 +263,59 @@ export async function buildServer(deps: ServerDeps): Promise<FastifyInstance> {
       });
     }
 
+    const toSearchInput = (p: z.infer<typeof searchQuery>) => ({
+      query: p.q,
+      country: p.country,
+      state: p.state && isKnownState(p.country, p.state) ? p.state : null,
+      sort: p.sort,
+      includeAccessories: p.accesorios,
+      includeRefurbished: p.reacondicionados,
+      exact: p.exacto,
+    });
+    const unknownCountry = (code: string) => fail(400, 'pais-desconocido', `Todavía no hay tiendas para el país ${code}.`);
+
     api.get(
       '/search',
       { config: { rateLimit: { max: sec.searchesPerMinute, timeWindow: '1 minute' } } },
       async (req, reply) => {
         const p = searchQuery.parse(req.query);
         if (!isKnownCountry(p.country)) {
-          const f = fail(400, 'pais-desconocido', `Todavía no hay tiendas para el país ${p.country}.`);
+          const f = unknownCountry(p.country);
           return reply.status(f.statusCode).send(f.body);
         }
-        const state = p.state && isKnownState(p.country, p.state) ? p.state : null;
         reply.header('Cache-Control', 'private, max-age=60');
-        return deps.service.search({
-          query: p.q,
-          country: p.country,
-          state,
-          sort: p.sort,
-          includeAccessories: p.accesorios,
-          includeRefurbished: p.reacondicionados,
-          exact: p.exacto,
-        });
+        return deps.service.search(toSearchInput(p));
+      },
+    );
+
+    // La misma búsqueda en dos tandas por una sola conexión, una línea JSON por tanda: primero lo de las tiendas
+    // rápidas (si faltan lentas, con partial: true) y al final la respuesta completa. Así la web enseña precios a los
+    // pocos segundos aunque las tiendas que se leen con navegador tarden más. Si sale de caché, es una sola línea.
+    api.get(
+      '/search/stream',
+      { config: { rateLimit: { max: sec.searchesPerMinute, timeWindow: '1 minute' } } },
+      async (req, reply) => {
+        const p = searchQuery.parse(req.query);
+        if (!isKnownCountry(p.country)) {
+          const f = unknownCountry(p.country);
+          return reply.status(f.statusCode).send(f.body);
+        }
+        // Los errores de la petición se contestan antes de empezar a transmitir, con su código HTTP.
+        if (tokenize(p.q).length === 0) throw new EmptyQueryError('Escribe qué producto buscas.');
+        const out = new PassThrough();
+        const line = (body: unknown) => `${JSON.stringify(body)}\n`;
+        deps.service
+          .search(toSearchInput(p), { onPartial: (early) => out.write(line(early)) })
+          .then((full) => out.end(line(full)))
+          .catch((err: unknown) => {
+            app.log.error(err);
+            out.end(line({ error: 'error-interno', message: 'Algo falló en el servidor.' } satisfies ApiError));
+          });
+        reply.header('Content-Type', 'application/x-ndjson; charset=utf-8');
+        reply.header('Cache-Control', 'no-store');
+        // Que ningún intermediario junte las dos líneas: la primera tiene que salir en cuanto existe.
+        reply.header('X-Accel-Buffering', 'no');
+        return reply.send(out);
       },
     );
 

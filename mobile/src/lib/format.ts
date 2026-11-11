@@ -27,4 +27,5 @@ export const storeStatusText: Record<StoreRunStatus, string> = {
   'requiere-credenciales': 'Falta conectarla',
   'tiempo-agotado': 'Tardó demasiado',
   error: 'Falló',
+  pendiente: 'Todavía contesta',
 };

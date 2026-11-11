@@ -61,6 +61,8 @@ export function createCoppelStore(lane: BrowserLane): StoreAdapter {
   return {
     info,
     currency: 'MXN',
+    // Abrir su página en un navegador tarda 10–15 s: tiene su propia espera y la primera tanda no la espera.
+    slow: true,
     async search(query: string, ctx: SearchContext) {
       const body = await lane.capture(`${ORIGIN}/sd/${encodeURIComponent(query)}`, {
         signal: ctx.signal,

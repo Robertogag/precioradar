@@ -78,7 +78,7 @@ cd web && npm install && npm run dev        # http://localhost:5173 (habla con e
 cd mobile && npm install && npx expo start  # escanea el QR con Expo Go
 ```
 
-Pruebas: `npm test` en `api/` y `web/`; `npm run typecheck` y `npm run lint` en cada carpeta.
+Pruebas: `npm test` en `api/` y `web/`; `npm run typecheck` en cada carpeta; `npm run lint` en `mobile/`.
 
 Variables opcionales en `api/.env` (ver `api/.env.example`): `DATABASE_URL` para Postgres, `MELI_CLIENT_ID`/`MELI_CLIENT_SECRET` de Mercado Libre, `STORE_TIMEOUT_MS`, y el carril de navegador (`BROWSER_STORES_OFF`, `PLAYWRIGHT_CHROMIUM`). Ninguna llave va al repositorio.
 
@@ -90,6 +90,7 @@ Una sola imagen (`Dockerfile`, base oficial de Playwright con Chromium) corre en
 
 - **Solo páginas y APIs públicas.** Si una tienda responde con un muro anti-robots, se reporta como bloqueada y no se insiste ni se intenta brincar: nada de proxies, huellas falsas ni captchas. Para esas tiendas el camino es su programa de afiliados.
 - **Mercado Libre cerró su búsqueda a aplicaciones externas** (2025). La app está registrada y sus llaves funcionan, pero el buscador contesta 403 y el catálogo viene sin precios. En vez de rodearlo: cada producto trae un enlace a su página en Mercado Libre, y en la app de celular el **precio que la persona ve al abrirlo se comparte con los demás**, con fecha y con su permiso.
+- **Las tiendas lentas no hacen esperar a las demás.** Coppel y Sears se leen con un navegador real y tardan 13 a 15 segundos desde la nube; las otras 19 contestan en menos de 4. La búsqueda llega en dos tandas por la misma conexión (una línea JSON por tanda): primero lo de las tiendas rápidas y, cuando terminan las lentas, la respuesta completa.
 - **Amazon contesta desde la nube la mitad de las veces** (captcha intermitente). La búsqueda guarda la última respuesta buena de cada tienda y, si falla ahora, la enseña diciendo de hace cuánto es.
 - **Agrupar es lo difícil.** Código de barras y claves de modelo cuando existen; si no, marca + especificaciones (capacidad, pulgadas, letra de modelo) con título parecido y precio creíble. Colores, "Wi-Fi" y "edición estándar" no cuentan; "Plus", "Pro" y "16e" sí.
 - **Una sola regla de color en las gráficas**: paleta de 8 colores validada para daltonismo, un color por tienda, nunca más de 8 series a la vez.

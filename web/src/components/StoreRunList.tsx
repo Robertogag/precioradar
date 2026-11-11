@@ -4,11 +4,12 @@ import { StoreMark } from './StoreMark.tsx';
 
 const ORDER: Record<StoreRunStatus, number> = {
   ok: 0,
-  'sin-resultados': 1,
-  'tiempo-agotado': 2,
-  bloqueada: 3,
-  'requiere-credenciales': 4,
-  error: 5,
+  pendiente: 1,
+  'sin-resultados': 2,
+  'tiempo-agotado': 3,
+  bloqueada: 4,
+  'requiere-credenciales': 5,
+  error: 6,
 };
 
 /** Qué pasó con cada tienda: para que nunca parezca que "no hay" cuando en realidad una tienda falló. */
@@ -16,7 +17,8 @@ export function StoreRunList({ runs }: { runs: StoreRun[] }) {
   const { t, tn } = useT();
   const ok = runs.filter((r) => r.status === 'ok').length;
   const empty = runs.filter((r) => r.status === 'sin-resultados').length;
-  const failed = runs.length - ok - empty;
+  // Las que todavía contestan (primera tanda) no cuentan como problema.
+  const failed = runs.filter((r) => r.status !== 'ok' && r.status !== 'sin-resultados' && r.status !== 'pendiente').length;
   const sorted = [...runs].sort((a, b) => ORDER[a.status] - ORDER[b.status] || b.count - a.count || a.storeName.localeCompare(b.storeName));
 
   return (

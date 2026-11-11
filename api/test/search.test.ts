@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import type { SearchResponse } from '../../shared/contracts.ts';
 import { type StoreAdapter, StoreBlockedError, StoreCredentialsError } from '../src/application/ports.ts';
 import { EmptyQueryError, createSearchService } from '../src/application/searchOffers.ts';
 import type { RawOffer } from '../src/domain/offer.ts';
@@ -21,7 +22,7 @@ function fakeStore(id: string, behavior: () => Promise<RawOffer[]>, withDeals = 
 
 const offer = (id: string, title: string, price: number, listPrice?: number): RawOffer => ({ externalId: id, title, price, listPrice, url: `https://x/${id}`, brand: 'Apple' });
 
-function build(stores: StoreAdapter[]) {
+function build(stores: StoreAdapter[], extra: { storeTimeoutMs?: number; slowStoreTimeoutMs?: number; partialAfterMs?: number } = {}) {
   let now = 1_000_000;
   const clock = { now: () => now };
   const service = createSearchService({
@@ -32,8 +33,26 @@ function build(stores: StoreAdapter[]) {
     perStoreLimit: 40,
     searchTtlMs: 600_000,
     dealsTtlMs: 600_000,
+    ...extra,
   });
   return { service, advance: (ms: number) => (now += ms) };
+}
+
+/** Tienda que contesta después de `ms` y respeta la espera máxima que le da la búsqueda (como las de verdad). */
+function timedStore(id: string, ms: number, offers: RawOffer[], slow = false): StoreAdapter {
+  return {
+    info: { id, name: id.toUpperCase(), country: 'MX', homepage: 'https://x', access: 'pagina-web', availability: 'activa', note: null },
+    currency: 'MXN',
+    ...(slow ? { slow: true } : {}),
+    search: (_q, ctx) =>
+      new Promise<RawOffer[]>((resolve, reject) => {
+        const t = setTimeout(() => resolve(offers), ms);
+        ctx.signal.addEventListener('abort', () => {
+          clearTimeout(t);
+          reject(ctx.signal.reason);
+        });
+      }),
+  };
 }
 
 const input = { query: 'iphone 15', country: 'MX', state: null, sort: 'relevancia' as const, includeAccessories: false, includeRefurbished: false };
@@ -139,7 +158,81 @@ describe('búsqueda en todas las tiendas', () => {
   });
 });
 
+describe('búsqueda en dos tandas: las tiendas lentas (navegador) no hacen esperar a las demás', () => {
+  const rapida = offer('1', 'Apple iPhone 15 128GB Negro', 15000);
+  const lenta = offer('2', 'Apple iPhone 15 128GB Azul', 14200);
+
+  it('manda primero lo de las tiendas rápidas, con la lenta «pendiente», y después todo', async () => {
+    const { service } = build([timedStore('rapida', 0, [rapida]), timedStore('lenta', 40, [lenta], true)], { storeTimeoutMs: 1_000, slowStoreTimeoutMs: 1_000 });
+    const early: SearchResponse[] = [];
+    const res = await service.search(input, { onPartial: (r) => early.push(r) });
+    expect(early).toHaveLength(1);
+    expect(early[0]!.partial).toBe(true);
+    expect(early[0]!.stores.find((s) => s.storeId === 'lenta')!.status).toBe('pendiente');
+    expect(early[0]!.groups[0]!.best.storeId).toBe('rapida');
+    expect(res.partial).toBe(false);
+    expect(res.stores.find((s) => s.storeId === 'lenta')!.status).toBe('ok');
+    expect(res.groups[0]!.best.storeId).toBe('lenta');
+  });
+
+  it('la primera tanda no se guarda: la siguiente búsqueda sale de caché con todas las tiendas y sin primera tanda', async () => {
+    const { service } = build([timedStore('rapida', 0, [rapida]), timedStore('lenta', 30, [lenta], true)], { storeTimeoutMs: 1_000, slowStoreTimeoutMs: 1_000 });
+    await service.search(input, { onPartial: () => {} });
+    const early: SearchResponse[] = [];
+    const again = await service.search(input, { onPartial: (r) => early.push(r) });
+    expect(again.cached).toBe(true);
+    expect(again.stores.map((s) => s.status)).toEqual(['ok', 'ok']);
+    expect(early).toHaveLength(0);
+  });
+
+  it('sin tiendas lentas no hay primera tanda', async () => {
+    const { service } = build([timedStore('a', 0, [rapida]), timedStore('b', 10, [lenta])], { storeTimeoutMs: 1_000 });
+    const early: SearchResponse[] = [];
+    await service.search(input, { onPartial: (r) => early.push(r) });
+    expect(early).toHaveLength(0);
+  });
+
+  it('una tienda rápida que se cuelga no detiene la primera tanda: sale al tiempo máximo con ella pendiente', async () => {
+    const { service } = build(
+      [timedStore('rapida', 0, [rapida]), timedStore('colgada', 120, [offer('3', 'Apple iPhone 15 128GB Rosa', 14900)]), timedStore('lenta', 150, [lenta], true)],
+      { storeTimeoutMs: 300, slowStoreTimeoutMs: 300, partialAfterMs: 20 },
+    );
+    const early: SearchResponse[] = [];
+    const res = await service.search(input, { onPartial: (r) => early.push(r) });
+    expect(early).toHaveLength(1);
+    const status = (r: SearchResponse, id: string) => r.stores.find((s) => s.storeId === id)!.status;
+    expect([status(early[0]!, 'rapida'), status(early[0]!, 'colgada'), status(early[0]!, 'lenta')]).toEqual(['ok', 'pendiente', 'pendiente']);
+    expect([status(res, 'colgada'), status(res, 'lenta')]).toEqual(['ok', 'ok']);
+  });
+
+  it('la tienda lenta tiene su propio tiempo máximo, más largo que el de las demás', async () => {
+    const { service } = build([timedStore('normal', 200, [rapida]), timedStore('lenta', 200, [lenta], true)], { storeTimeoutMs: 50, slowStoreTimeoutMs: 1_000 });
+    const res = await service.search(input);
+    expect(res.stores.find((s) => s.storeId === 'normal')!.status).toBe('tiempo-agotado');
+    expect(res.stores.find((s) => s.storeId === 'lenta')!.status).toBe('ok');
+  });
+});
+
 describe('API HTTP', () => {
+  it('la búsqueda en dos tandas llega como líneas JSON: primero la parcial, al final la completa', async () => {
+    const { service } = build([timedStore('rapida', 0, [offer('1', 'Apple iPhone 15 128GB', 15000)]), timedStore('lenta', 40, [offer('2', 'Apple iPhone 15 128GB', 14000)], true)], {
+      storeTimeoutMs: 1_000,
+      slowStoreTimeoutMs: 1_000,
+    });
+    const suggester = { forQuery: async () => ({ query: '', suggestions: [], related: [] }) };
+    const security = { allowedOrigins: null, trustProxy: false, rateLimitPerMinute: 100, searchesPerMinute: 100, webDist: null };
+    const app = await buildServer({ service, suggester, catalog: [], version: 'test', security, logger: false });
+    const res = await app.inject({ url: '/api/search/stream?q=iphone%2015' });
+    expect(res.statusCode).toBe(200);
+    expect(res.headers['content-type']).toContain('application/x-ndjson');
+    const lines = res.payload.trim().split('\n').map((l) => JSON.parse(l) as SearchResponse);
+    expect(lines.map((l) => l.partial)).toEqual([true, false]);
+    expect(lines[1]!.groups[0]!.best.price).toBe(14000);
+    expect((await app.inject({ url: '/api/search/stream?q=a' })).statusCode).toBe(400);
+    expect((await app.inject({ url: '/api/search/stream?q=%20de%20la%20' })).json()).toMatchObject({ error: 'busqueda-vacia' });
+    await app.close();
+  });
+
   it('valida la petición y responde el contrato', async () => {
     const { service } = build([fakeStore('a', async () => [offer('1', 'Apple iPhone 15 128GB', 15000)])]);
     const suggester = { forQuery: async () => ({ query: '', suggestions: [], related: [] }) };

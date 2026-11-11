@@ -93,6 +93,7 @@ export const en: Dict = {
     noneFiltered: 'Nothing matches the filters you chose.',
     resetFilters: 'Clear filters',
     cached: 'Prices fetched {ago}',
+    pending: '{stores} still answering; their prices will appear here in a few seconds.',
     related: 'Also compare',
     sort: {
       label: 'Sort by',
@@ -164,6 +165,7 @@ export const en: Dict = {
       bloqueada: 'Refused the query',
       'requiere-credenciales': 'Not connected yet',
       'tiempo-agotado': 'Took too long',
+      pendiente: 'Still answering',
       error: 'Failed',
     },
     count: { one: '1 price', many: '{n} prices' },

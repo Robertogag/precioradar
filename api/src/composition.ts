@@ -96,6 +96,10 @@ export function compose(log: (message: string) => void = console.log) {
     cache,
     clock,
     storeTimeoutMs: Number(process.env.STORE_TIMEOUT_MS ?? 12_000),
+    // Coppel y Sears (navegador real) tardan 13–16 s: con la búsqueda en dos tandas nadie mira la pantalla de carga
+    // mientras tanto, así que se les da más margen para que no salgan como «tiempo agotado».
+    slowStoreTimeoutMs: Number(process.env.SLOW_STORE_TIMEOUT_MS ?? 22_000),
+    partialAfterMs: Number(process.env.PARTIAL_AFTER_MS ?? 5_000),
     perStoreLimit: 40,
     searchTtlMs: 10 * 60_000,
     dealsTtlMs: 30 * 60_000,

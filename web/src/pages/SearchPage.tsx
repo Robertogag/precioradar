@@ -1,7 +1,7 @@
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { keepPreviousData, skipToken, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Navigate, useNavigate, useSearchParams } from 'react-router';
-import type { SortMode } from '../../../shared/contracts.ts';
+import type { SearchResponse, SortMode } from '../../../shared/contracts.ts';
 import { FilterPanel } from '../components/FilterPanel.tsx';
 import { ProductCard } from '../components/ProductCard.tsx';
 import { SearchBox } from '../components/SearchBox.tsx';
@@ -17,6 +17,15 @@ import { useSettings } from '../state/settings.ts';
 
 const SORTS: SortMode[] = ['relevancia', 'precio', 'descuento'];
 
+/** "Coppel y Sears" / "Coppel and Sears", como se dice en el idioma de la app. */
+function listFormat(items: string[], locale: string): string {
+  try {
+    return new Intl.ListFormat(locale, { style: 'long', type: 'conjunction' }).format(items);
+  } catch {
+    return items.join(', ');
+  }
+}
+
 export function SearchPage() {
   const { t, locale } = useT();
   const navigate = useNavigate();
@@ -30,10 +39,15 @@ export function SearchPage() {
   const sheetRef = useRef<HTMLDialogElement>(null);
 
   const q = state.q;
+  const queryClient = useQueryClient();
+  const searchKey = ['search', country, stateCode, q, state.sort, state.includeAccessories, state.includeRefurbished, state.exact] as const;
+  // Primera tanda de la búsqueda (tiendas rápidas) mientras Coppel y Sears terminan: vive en su propia entrada de
+  // caché y se enseña solo hasta que llega la respuesta completa.
+  const earlyKey = ['search-early', ...searchKey] as const;
   const search = useQuery({
-    queryKey: ['search', country, stateCode, q, state.sort, state.includeAccessories, state.includeRefurbished, state.exact],
+    queryKey: searchKey,
     queryFn: ({ signal }) =>
-      api.search(
+      api.searchInTwoBatches(
         {
           query: q,
           country,
@@ -43,6 +57,7 @@ export function SearchPage() {
           includeRefurbished: state.includeRefurbished,
           exact: state.exact,
         },
+        (early) => queryClient.setQueryData(earlyKey, early),
         signal,
       ),
     enabled: q.length >= 2,
@@ -50,6 +65,7 @@ export function SearchPage() {
     staleTime: 5 * 60_000,
     retry: false,
   });
+  const early = useQuery<SearchResponse>({ queryKey: earlyKey, queryFn: skipToken, staleTime: Infinity });
   const related = useQuery({
     queryKey: ['suggest', country, q],
     queryFn: ({ signal }) => api.suggest(q, country, signal),
@@ -76,10 +92,14 @@ export function SearchPage() {
     if (wide) setSheetOpen(false);
   }, [wide]);
 
-  const data = search.data;
+  // Mientras la respuesta completa no llega (o lo que hay es la búsqueda anterior), la primera tanda manda.
+  const showEarly = early.data !== undefined && !search.isError && (search.data === undefined || search.isPlaceholderData);
+  const data = showEarly ? early.data : search.data;
   const groups = useMemo(() => (data ? applyFilters(data.groups, state.filters) : []), [data, state.filters]);
   const activeCount = activeFilterCount(state.filters);
   const stale = data !== undefined && data.query !== q;
+  const pendingStores = data?.partial ? data.stores.filter((s) => s.status === 'pendiente').map((s) => s.storeName) : [];
+  const refreshing = search.isFetching && !data?.partial;
 
   if (q.length < 2) return <Navigate to="/" replace />;
 
@@ -114,6 +134,12 @@ export function SearchPage() {
               stores: data.stores.filter((s) => s.status === 'ok').length,
             })}
             <span className="results__ago"> · {t((d) => d.results.cached, { ago: ago(data.generatedAt, locale) })}</span>
+          </p>
+        )}
+        {pendingStores.length > 0 && !stale && (
+          <p className="results__pending" role="status">
+            <span className="results__pending-dot" aria-hidden="true" />
+            {t((d) => d.results.pending, { stores: listFormat(pendingStores, locale) })}
           </p>
         )}
       </header>
@@ -174,7 +200,7 @@ export function SearchPage() {
               }
             />
           ) : (
-            <div className={`list${search.isFetching ? ' is-refreshing' : ''}`}>
+            <div className={`list${refreshing ? ' is-refreshing' : ''}`}>
               {groups.map((g) => (
                 <ProductCard key={g.key} group={g} country={country} />
               ))}

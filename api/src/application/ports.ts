@@ -90,6 +90,11 @@ export interface SearchContext {
 export interface StoreAdapter {
   readonly info: StoreInfo;
   readonly currency: string;
+  /**
+   * Tarda bastante más que las demás (se lee con un navegador real). Tiene su propia espera máxima, más larga, y la
+   * búsqueda en dos tandas no la espera para enseñar la primera.
+   */
+  readonly slow?: boolean;
   search(query: string, ctx: SearchContext): Promise<RawOffer[]>;
   /** Ofertas con mayor descuento del momento, si la tienda permite pedirlas ordenadas así. */
   deals?(ctx: SearchContext): Promise<RawOffer[]>;

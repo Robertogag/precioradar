@@ -95,6 +95,7 @@ export const es = {
     noneFiltered: 'Ningún resultado pasa los filtros que elegiste.',
     resetFilters: 'Quitar filtros',
     cached: 'Precios consultados {ago}',
+    pending: 'Todavía contestan {stores}; sus precios aparecen aquí en unos segundos.',
     related: 'Compara también',
     sort: {
       label: 'Ordenar por',
@@ -166,6 +167,7 @@ export const es = {
       bloqueada: 'No dejó consultar',
       'requiere-credenciales': 'Falta conectarla',
       'tiempo-agotado': 'Tardó demasiado',
+      pendiente: 'Todavía contesta',
       error: 'Falló',
     },
     count: { one: '1 precio', many: '{n} precios' },

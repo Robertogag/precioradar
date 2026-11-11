@@ -154,7 +154,9 @@ export type StoreRunStatus =
   | 'bloqueada'
   | 'requiere-credenciales'
   | 'tiempo-agotado'
-  | 'error';
+  | 'error'
+  /** Solo en la primera tanda de una búsqueda: la tienda (lenta) todavía no contesta; llega en la respuesta completa. */
+  | 'pendiente';
 
 /** Qué pasó con cada tienda en esta búsqueda; la app lo enseña para que nunca parezca que "no hay" cuando en realidad falló. */
 export interface StoreRun {
@@ -193,6 +195,11 @@ export interface SearchResponse {
   cached: boolean;
   tookMs: number;
   generatedAt: string;
+  /**
+   * true = primera tanda: ya contestaron las tiendas rápidas y faltan las lentas (marcadas «pendiente»); la respuesta
+   * completa llega después por la misma conexión. Ausente o false = respuesta completa.
+   */
+  partial?: boolean;
 }
 
 export interface DealsResponse {

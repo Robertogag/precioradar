@@ -80,6 +80,8 @@ export function createSearsStore(lane: BrowserLane): StoreAdapter {
   return {
     info,
     currency: 'MXN',
+    // Abrir su página en un navegador tarda 10–15 s: tiene su propia espera y la primera tanda no la espera.
+    slow: true,
     async search(query: string, ctx: SearchContext) {
       const body = await lane.capture(`${ORIGIN}/resultados?query=${encodeURIComponent(query)}`, {
         signal: ctx.signal,
