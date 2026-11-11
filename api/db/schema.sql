@@ -46,3 +46,25 @@ ALTER TABLE comparador.price_snapshots ADD COLUMN IF NOT EXISTS source text NOT 
 
 -- Para el historial por periodo y la cobertura (desde cuándo hay datos).
 CREATE INDEX IF NOT EXISTS price_snapshots_country_time ON comparador.price_snapshots (country, seen_at);
+
+-- Reporte de uso (11-nov-2026). Quién buscó: 'persona' o 'refresco' (el trabajo automático de las 6:00); si la
+-- respuesta salió de caché (alguien buscó lo mismo hace poco); y un código de visitante que cambia cada día y no
+-- permite saber la IP ni seguir a nadie de un día a otro.
+ALTER TABLE comparador.searches ADD COLUMN IF NOT EXISTS origin text NOT NULL DEFAULT 'persona';
+ALTER TABLE comparador.searches ADD COLUMN IF NOT EXISTS from_cache boolean NOT NULL DEFAULT false;
+ALTER TABLE comparador.searches ADD COLUMN IF NOT EXISTS visitor text;
+-- Antes de esta fecha no se distinguía el refresco: sus búsquedas son las que caen entre 6:00 y 6:30 (hora de México).
+UPDATE comparador.searches SET origin = 'refresco'
+ WHERE origin = 'persona' AND searched_at < '2026-11-12'
+   AND (searched_at AT TIME ZONE 'America/Mexico_City')::time BETWEEN '05:59' AND '06:30';
+
+-- Cómo le va a cada tienda, por día: veces que contestó con resultados, sin resultados o con falla, y cuánto tardó.
+CREATE TABLE IF NOT EXISTS comparador.store_daily (
+  country   text     NOT NULL,
+  day       date     NOT NULL,
+  store_id  text     NOT NULL,
+  status    text     NOT NULL,
+  runs      integer  NOT NULL DEFAULT 0,
+  total_ms  bigint   NOT NULL DEFAULT 0,
+  PRIMARY KEY (country, day, store_id, status)
+);

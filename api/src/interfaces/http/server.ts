@@ -2,8 +2,8 @@ import cors from '@fastify/cors';
 import helmet from '@fastify/helmet';
 import rateLimit from '@fastify/rate-limit';
 import fastifyStatic from '@fastify/static';
-import Fastify, { type FastifyInstance, type FastifyPluginAsync } from 'fastify';
-import { timingSafeEqual } from 'node:crypto';
+import Fastify, { type FastifyInstance, type FastifyPluginAsync, type FastifyRequest } from 'fastify';
+import { createHmac, timingSafeEqual } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { PassThrough } from 'node:stream';
@@ -15,6 +15,7 @@ import type {
   PriceHistoryResponse,
   ObservationsResponse,
   RefreshJobResult,
+  StatsResponse,
   StoreInfo,
   StoreLinksResponse,
   SuggestResponse,
@@ -23,9 +24,10 @@ import { HistoryRangeError, type HistoryService, MAX_HISTORY_ITEMS } from '../..
 import type { LinksService } from '../../application/links.ts';
 import type { ObservationsService } from '../../application/observations.ts';
 import type { RefreshJob } from '../../application/refreshJob.ts';
+import { MAX_STATS_DAYS, type StatsService } from '../../application/stats.ts';
 import { EmptyQueryError, type SearchService } from '../../application/searchOffers.ts';
 import type { SuggestService } from '../../application/suggest.ts';
-import { isDay } from '../../domain/dates.ts';
+import { dayOf, isDay } from '../../domain/dates.ts';
 import { tokenize } from '../../domain/text.ts';
 import { isKnownCountry, isKnownState, listCountries } from '../../infrastructure/catalog/countries.ts';
 
@@ -47,6 +49,8 @@ const searchQuery = z.object({
 });
 
 const countryQuery = z.object({ country });
+
+const statsQuery = z.object({ country, days: z.coerce.number().int().min(1).max(MAX_STATS_DAYS).default(14) });
 
 const linksQuery = z.object({
   country,
@@ -135,6 +139,22 @@ export interface ServerDeps {
   job?: RefreshJob;
   /** Clave que debe traer Cloud Scheduler en X-Job-Key para disparar el refresco. */
   jobKey?: string | null;
+  /** Reporte privado de uso. Sin él (o sin `statsKey`), la ruta responde 404. */
+  stats?: StatsService;
+  /** Llave que debe traer quien pide el reporte de uso, en X-Stats-Key. */
+  statsKey?: string | null;
+  /**
+   * Secreto para el código de visitante del día (HMAC de día + IP + navegador). Sin él no se calcula. La IP solo
+   * se usa en ese momento: lo que se guarda es el código, que cambia cada día y no se puede revertir.
+   */
+  visitorKey?: string | null;
+  /** Reloj para el día del código de visitante (las pruebas lo fijan). */
+  now?: () => number;
+}
+
+/** Compara una llave recibida con la esperada sin filtrar por el tiempo cuántos caracteres coinciden. */
+function sameKey(given: unknown, expected: string): boolean {
+  return typeof given === 'string' && given.length === expected.length && timingSafeEqual(Buffer.from(given), Buffer.from(expected));
 }
 
 const PRIVATE_HOST = /^(localhost|127\.0\.0\.1|\[::1\]|10\.\d+\.\d+\.\d+|192\.168\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\.\d+\.\d+)$/;
@@ -263,7 +283,16 @@ export async function buildServer(deps: ServerDeps): Promise<FastifyInstance> {
       });
     }
 
-    const toSearchInput = (p: z.infer<typeof searchQuery>) => ({
+    const now = deps.now ?? Date.now;
+    const visitorKey = deps.visitorKey;
+    const visitorOf = (req: FastifyRequest): string | null =>
+      visitorKey
+        ? createHmac('sha256', visitorKey)
+            .update(`${dayOf(now())}|${req.ip}|${req.headers['user-agent'] ?? ''}`)
+            .digest('base64url')
+            .slice(0, 16)
+        : null;
+    const toSearchInput = (p: z.infer<typeof searchQuery>, req: FastifyRequest) => ({
       query: p.q,
       country: p.country,
       state: p.state && isKnownState(p.country, p.state) ? p.state : null,
@@ -271,6 +300,7 @@ export async function buildServer(deps: ServerDeps): Promise<FastifyInstance> {
       includeAccessories: p.accesorios,
       includeRefurbished: p.reacondicionados,
       exact: p.exacto,
+      visitor: visitorOf(req),
     });
     const unknownCountry = (code: string) => fail(400, 'pais-desconocido', `Todavía no hay tiendas para el país ${code}.`);
 
@@ -284,7 +314,7 @@ export async function buildServer(deps: ServerDeps): Promise<FastifyInstance> {
           return reply.status(f.statusCode).send(f.body);
         }
         reply.header('Cache-Control', 'private, max-age=60');
-        return deps.service.search(toSearchInput(p));
+        return deps.service.search(toSearchInput(p, req));
       },
     );
 
@@ -305,7 +335,7 @@ export async function buildServer(deps: ServerDeps): Promise<FastifyInstance> {
         const out = new PassThrough();
         const line = (body: unknown) => `${JSON.stringify(body)}\n`;
         deps.service
-          .search(toSearchInput(p), { onPartial: (early) => out.write(line(early)) })
+          .search(toSearchInput(p, req), { onPartial: (early) => out.write(line(early)) })
           .then((full) => out.end(line(full)))
           .catch((err: unknown) => {
             app.log.error(err);
@@ -346,6 +376,16 @@ export async function buildServer(deps: ServerDeps): Promise<FastifyInstance> {
         return job.run(c);
       });
     }
+
+    // Reporte privado de uso. Sin la llave correcta, 404: que no se note que existe. Límite propio y sin caché.
+    api.get('/stats', { config: { rateLimit: { max: 30, timeWindow: '1 minute' } } }, async (req, reply): Promise<StatsResponse | ApiError> => {
+      if (!deps.stats || !deps.statsKey || !sameKey(req.headers['x-stats-key'], deps.statsKey)) {
+        return reply.status(404).send({ error: 'no-encontrado', message: 'No existe esa ruta.' } satisfies ApiError);
+      }
+      const p = statsQuery.parse(req.query);
+      reply.header('Cache-Control', 'no-store');
+      return deps.stats.report(p.country, p.days);
+    });
 
     api.get('/deals', async (req, reply) => {
       const p = countryQuery.parse(req.query);

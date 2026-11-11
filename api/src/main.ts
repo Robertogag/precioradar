@@ -2,8 +2,8 @@ import { networkInterfaces } from 'node:os';
 import { VERSION, compose } from './composition.ts';
 import { buildServer } from './interfaces/http/server.ts';
 
-const { service, suggester, historyService, links, observations, job, jobKey, registry, history, security, lane } = compose();
-const app = await buildServer({ service, suggester, history: historyService, links, observations, job, jobKey, catalog: registry.catalog, version: VERSION, security });
+const { service, suggester, historyService, links, observations, job, jobKey, stats, statsKey, visitorKey, registry, history, security, lane } = compose();
+const app = await buildServer({ service, suggester, history: historyService, links, observations, job, jobKey, stats, statsKey, visitorKey, catalog: registry.catalog, version: VERSION, security });
 
 const port = Number(process.env.PORT ?? 4000);
 await app.listen({ host: '0.0.0.0', port });

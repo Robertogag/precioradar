@@ -6,6 +6,7 @@ import type {
   PriceHistoryResponse,
   SearchResponse,
   SortMode,
+  StatsResponse,
   StoreInfo,
   StoreLinksResponse,
   SuggestResponse,
@@ -47,10 +48,10 @@ function urlFor(path: string, params: Params): string {
 
 const isAbort = (err: unknown) => err instanceof DOMException && err.name === 'AbortError';
 
-async function request(path: string, params: Params, accept: string, signal?: AbortSignal): Promise<Response> {
+async function request(path: string, params: Params, accept: string, signal?: AbortSignal, headers: Record<string, string> = {}): Promise<Response> {
   let res: Response;
   try {
-    res = await fetch(urlFor(path, params), { headers: { Accept: accept }, credentials: 'omit', signal });
+    res = await fetch(urlFor(path, params), { headers: { Accept: accept, ...headers }, credentials: 'omit', signal });
   } catch (err) {
     if (isAbort(err)) throw err;
     throw new ApiFailure('unreachable', null, null);
@@ -141,6 +142,11 @@ export const api = {
     get<PriceHistoryResponse>('/history', { items: items.join(','), country, from, to }, signal),
   coverage: (country: string, signal?: AbortSignal) => get<HistoryCoverage>('/history/coverage', { country }, signal),
   /** La página exacta del producto en las tiendas que no se consultan (o su buscador si no lo reconocen). */
+  /** Reporte privado de uso. Sin la llave correcta el servidor contesta 404 (como si no existiera). */
+  stats: async (key: string, country: string, days: number, signal?: AbortSignal) => {
+    const res = await request('/stats', { country, days }, 'application/json', signal, { 'X-Stats-Key': key });
+    return (await res.json()) as StatsResponse;
+  },
   links: (title: string, brand: string | null, country: string, signal?: AbortSignal) =>
     get<StoreLinksResponse>('/links', { title, brand, country }, signal),
 };

@@ -29,6 +29,7 @@ param(
   [string]$SecretoJob = 'comparador-job-key',
   [string]$SecretoMeliId = 'comparador-meli-client-id',
   [string]$SecretoMeliSecret = 'comparador-meli-client-secret',
+  [string]$SecretoStats = 'comparador-stats-key',
   [string]$TrabajoRefresco = 'comparador-refresco-precios',
   [string]$CuentaServicio = 'comparador-api'
 )
@@ -228,6 +229,14 @@ $meliId = $null; $meliSecret = $null
 $meliListo = [bool](GQ secrets describe $SecretoMeliId --format='value(name)') -and [bool](GQ secrets describe $SecretoMeliSecret --format='value(name)')
 if ($meliListo) { Ok 'Mercado Libre quedará conectado en Cloud Run' } else { Nota 'Mercado Libre seguirá como "requiere credenciales"' }
 
+# ---------- 4d) Llave del reporte privado de uso (/estadisticas): de api\.env a Secret Manager ------------------
+Paso "Secreto $SecretoStats (STATS_KEY)"
+$statsKey = Leer-Env $envApi 'STATS_KEY'
+if ($statsKey) { Sincronizar-Secreto $SecretoStats $statsKey } else { Nota 'api\.env no tiene STATS_KEY; se conserva la que ya esté en Secret Manager, si la hay' }
+$statsKey = $null
+$statsListo = [bool](GQ secrets describe $SecretoStats --format='value(name)')
+if ($statsListo) { Ok 'el reporte de uso quedará encendido' } else { Nota 'sin STATS_KEY: el reporte de uso quedará apagado' }
+
 # ---------- 5) Cuenta de servicio con permisos mínimos --------------------------------------------------
 Paso "Cuenta de servicio $CuentaServicio"
 $saEmail = "$CuentaServicio@$Proyecto.iam.gserviceaccount.com"
@@ -240,6 +249,9 @@ G secrets add-iam-policy-binding $SecretoJob --member="serviceAccount:$saEmail" 
 if ($meliListo) {
   G secrets add-iam-policy-binding $SecretoMeliId --member="serviceAccount:$saEmail" --role='roles/secretmanager.secretAccessor' | Out-Null
   G secrets add-iam-policy-binding $SecretoMeliSecret --member="serviceAccount:$saEmail" --role='roles/secretmanager.secretAccessor' | Out-Null
+}
+if ($statsListo) {
+  G secrets add-iam-policy-binding $SecretoStats --member="serviceAccount:$saEmail" --role='roles/secretmanager.secretAccessor' | Out-Null
 }
 Ok "roles/cloudsql.client (proyecto) + roles/secretmanager.secretAccessor (solo sus secretos$(if ($meliListo) { ', incluidos los de Mercado Libre' }))"
 
@@ -255,6 +267,7 @@ Paso "Cloud Run · $Servicio en $Region (construcción con Cloud Build desde el 
 Nota 'esto tarda unos minutos la primera vez'
 $montajes = "DATABASE_URL=${Secreto}:latest,JOB_KEY=${SecretoJob}:latest"
 if ($meliListo) { $montajes += ",MELI_CLIENT_ID=${SecretoMeliId}:latest,MELI_CLIENT_SECRET=${SecretoMeliSecret}:latest" }
+if ($statsListo) { $montajes += ",STATS_KEY=${SecretoStats}:latest" }
 G run deploy $Servicio `
   --source=$raiz `
   --region=$Region `

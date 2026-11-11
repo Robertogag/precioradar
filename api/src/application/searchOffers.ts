@@ -9,6 +9,7 @@ import {
   type Clock,
   type SearchContext,
   type SearchHistory,
+  type SearchOrigin,
   type StoreAdapter,
   StoreBlockedError,
   StoreCredentialsError,
@@ -70,6 +71,10 @@ export interface SearchInput {
   exact?: boolean;
   /** Ignorar la caché y volver a consultar a las tiendas (lo usa el refresco programado). */
   fresh?: boolean;
+  /** Quién busca: una persona (por omisión) o el refresco automático. Solo afecta lo que se anota en el reporte de uso. */
+  origin?: SearchOrigin;
+  /** Código del visitante del día (lo calcula la capa HTTP; nunca la IP). */
+  visitor?: string | null;
 }
 
 export interface SearchOptions {
@@ -223,8 +228,20 @@ export function createSearchService(deps: SearchDeps) {
 
   const answered = (g: Gathered) => g.runs.some((r) => r.status === 'ok' || r.status === 'sin-resultados');
 
+  type Who = { origin: SearchOrigin; visitor: string | null };
+
+  /** Una búsqueda repetida que salió de caché también es alguien buscando: se anota, sin precios ni tiendas. */
+  function rememberRepeat(country: string, query: string, g: Gathered, who: Who): void {
+    const history = deps.history;
+    if (!history) return;
+    const storeCount = g.runs.filter((r) => r.status === 'ok').length;
+    history
+      .recordSearch({ query, country, resultCount: g.offers.length, storeCount, ...who, fromCache: true })
+      .catch((err: unknown) => deps.onHistoryError?.(err));
+  }
+
   /** Guarda la búsqueda y los precios vistos sin hacer esperar al usuario; si la memoria falla, se avisa y ya. */
-  function remember(country: string, query: string, g: Gathered): void {
+  function remember(country: string, query: string, g: Gathered, who: Who): void {
     const history = deps.history;
     if (!history) return;
     const rows = g.offers.slice(0, PRICES_PER_SEARCH).map((o) => ({
@@ -240,8 +257,12 @@ export function createSearchService(deps: SearchDeps) {
     }));
     const storeCount = g.runs.filter((r) => r.status === 'ok').length;
     void Promise.all([
-      history.recordSearch({ query, country, resultCount: g.offers.length, storeCount }),
+      history.recordSearch({ query, country, resultCount: g.offers.length, storeCount, ...who, fromCache: false }),
       rows.length > 0 ? history.recordPrices(rows) : Promise.resolve(),
+      history.recordStoreRuns(
+        country,
+        g.runs.map((r) => ({ storeId: r.storeId, status: r.status, ms: r.ms })),
+      ),
     ]).catch((err: unknown) => deps.onHistoryError?.(err));
   }
 
@@ -283,8 +304,12 @@ export function createSearchService(deps: SearchDeps) {
     };
 
     const key = `search:${input.country}:${normalize(query)}`;
+    const who: Who = { origin: input.origin ?? 'persona', visitor: input.visitor ?? null };
     const hit = input.fresh ? undefined : deps.cache.get<Gathered>(key);
-    if (hit) return shape(hit, true, false);
+    if (hit) {
+      rememberRepeat(input.country, query, hit, who);
+      return shape(hit, true, false);
+    }
 
     const stores = deps.stores.filter((s) => s.info.country === input.country);
     const onPartial = options.onPartial;
@@ -300,7 +325,7 @@ export function createSearchService(deps: SearchDeps) {
     // el siguiente intento vuelve a consultar.
     if (answered(gathered)) {
       deps.cache.set(key, gathered, deps.searchTtlMs);
-      remember(input.country, query, gathered);
+      remember(input.country, query, gathered, who);
     }
     return shape(gathered, false, false);
   }

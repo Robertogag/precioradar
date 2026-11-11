@@ -1,6 +1,9 @@
-import type { PricePoint, StoreInfo } from '../../../shared/contracts.ts';
+import type { PricePoint, StatsDay, StatsQuery, StatsStore, StoreInfo, StoreRunStatus } from '../../../shared/contracts.ts';
 import type { RawOffer } from '../domain/offer.ts';
 import type { LearnedTerm } from '../domain/suggest.ts';
+
+/** Quién buscó: una persona (web o app) o el refresco automático de las 6:00. */
+export type SearchOrigin = 'persona' | 'refresco';
 
 /** Lo que se guarda de una búsqueda que alguna tienda sí contestó. */
 export interface SearchRecord {
@@ -9,6 +12,27 @@ export interface SearchRecord {
   resultCount: number;
   /** Tiendas que respondieron con resultados. */
   storeCount: number;
+  /** Sin valor = persona. Las del refresco no cuentan para lo más buscado ni para las sugerencias. */
+  origin?: SearchOrigin;
+  /** true = alguien buscó lo mismo hace poco y la respuesta salió de caché (sin consultar tiendas). */
+  fromCache?: boolean;
+  /** Código del visitante: cambia cada día y no permite saber la IP ni seguir a nadie de un día a otro. */
+  visitor?: string | null;
+}
+
+/** Cómo le fue a una tienda en una búsqueda: alimenta la confiabilidad por tienda del reporte de uso. */
+export interface StoreRunRecord {
+  storeId: string;
+  status: StoreRunStatus;
+  ms: number;
+}
+
+/** Uso entre dos días (hora de México), ya agregado; solo días con datos. */
+export interface UsageReport {
+  daily: StatsDay[];
+  topQueries: StatsQuery[];
+  noResults: StatsQuery[];
+  stores: Omit<StatsStore, 'storeName'>[];
 }
 
 /** Un precio visto en una tienda; es la base del historial de precios. */
@@ -75,6 +99,10 @@ export interface SearchHistory {
   coverage(country: string): Promise<CoverageInfo>;
   /** Las búsquedas más repetidas, para refrescar sus precios aunque nadie busque. */
   topTerms(country: string, limit: number): Promise<string[]>;
+  /** Suma una consulta a cada tienda en el día de hoy (ok, sin resultados o falla, y cuánto tardó). */
+  recordStoreRuns(country: string, runs: StoreRunRecord[]): Promise<void>;
+  /** Uso agregado entre dos días AAAA-MM-DD (`toExclusive` no se incluye), en hora de México. */
+  usage(country: string, from: string, toExclusive: string): Promise<UsageReport>;
   close(): Promise<void>;
 }
 

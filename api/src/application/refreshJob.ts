@@ -26,7 +26,7 @@ export function createRefreshJob(deps: RefreshJobDeps) {
     const worker = async () => {
       for (let term = queue.shift(); term !== undefined; term = queue.shift()) {
         try {
-          const res = await deps.search({ query: term, country, state: null, sort: 'relevancia', includeAccessories: true, includeRefurbished: true, fresh: true });
+          const res = await deps.search({ query: term, country, state: null, sort: 'relevancia', includeAccessories: true, includeRefurbished: true, fresh: true, origin: 'refresco' });
           searches++;
           offers += res.totalOffers;
         } catch {

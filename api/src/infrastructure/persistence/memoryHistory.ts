@@ -1,9 +1,12 @@
-import type { CoverageInfo, ItemRef, PriceRecord, PriceSeries, SearchHistory, SearchRecord } from '../../application/ports.ts';
+import type { StatsDay, StatsQuery, StatsStore, StoreRunStatus } from '../../../../shared/contracts.ts';
+import type { CoverageInfo, ItemRef, PriceRecord, PriceSeries, SearchHistory, SearchRecord, UsageReport } from '../../application/ports.ts';
 import { dayOf } from '../../domain/dates.ts';
 import type { LearnedTerm } from '../../domain/suggest.ts';
 import { normalize } from '../../domain/text.ts';
 
 const MAX_PRICES = 20_000;
+/** Cuántas búsquedas lista el reporte de uso en "lo más buscado" y "sin resultados". */
+export const USAGE_TOP = 15;
 
 interface Stored {
   row: PriceRecord;
@@ -17,6 +20,8 @@ interface Stored {
 export function createMemoryHistory(now: () => number = Date.now): SearchHistory & { searches: SearchRecord[]; prices: PriceRecord[] } {
   const terms = new Map<string, { text: string; hits: number; lastAt: number }>();
   const searches: SearchRecord[] = [];
+  const searchLog: { record: SearchRecord; at: number }[] = [];
+  const storeDaily = new Map<string, { country: string; day: string; storeId: string; status: StoreRunStatus; runs: number; totalMs: number }>();
   const stored: Stored[] = [];
 
   return {
@@ -26,6 +31,9 @@ export function createMemoryHistory(now: () => number = Date.now): SearchHistory
     },
     async recordSearch(record) {
       searches.push(record);
+      searchLog.push({ record, at: now() });
+      // Lo que busca el refresco automático no es de nadie: no alimenta lo más buscado ni las sugerencias.
+      if (record.origin === 'refresco') return;
       if (record.resultCount <= 0) return;
       const norm = normalize(record.query);
       if (norm.length < 3) return;
@@ -129,6 +137,74 @@ export function createMemoryHistory(now: () => number = Date.now): SearchHistory
         .sort((a, b) => b.hits - a.hits || b.lastAt - a.lastAt)
         .slice(0, limit)
         .map((t) => t.text);
+    },
+    async recordStoreRuns(country, runs) {
+      const day = dayOf(now());
+      for (const r of runs) {
+        const key = `${country}|${day}|${r.storeId}|${r.status}`;
+        const cur = storeDaily.get(key) ?? { country, day, storeId: r.storeId, status: r.status, runs: 0, totalMs: 0 };
+        cur.runs += 1;
+        cur.totalMs += r.ms;
+        storeDaily.set(key, cur);
+      }
+    },
+    async usage(country, from, toExclusive): Promise<UsageReport> {
+      const inRange = searchLog
+        .map((s) => ({ ...s, day: dayOf(s.at) }))
+        .filter((s) => s.record.country === country && s.day >= from && s.day < toExclusive);
+      const people = inRange.filter((s) => s.record.origin !== 'refresco');
+
+      const days = new Map<string, StatsDay & { who: Set<string> }>();
+      for (const s of inRange) {
+        const d = days.get(s.day) ?? { day: s.day, searches: 0, fromCache: 0, visitors: 0, refresh: 0, who: new Set<string>() };
+        if (s.record.origin === 'refresco') d.refresh += 1;
+        else {
+          d.searches += 1;
+          if (s.record.fromCache) d.fromCache += 1;
+          if (s.record.visitor) d.who.add(s.record.visitor);
+        }
+        days.set(s.day, d);
+      }
+      const daily = [...days.values()]
+        .sort((a, b) => (a.day < b.day ? -1 : 1))
+        .map(({ who, ...d }) => ({ ...d, visitors: who.size }));
+
+      const rank = (list: typeof people): StatsQuery[] => {
+        const byQuery = new Map<string, { query: string; searches: number; results: number; lastAt: number }>();
+        for (const s of list) {
+          const key = normalize(s.record.query);
+          const cur = byQuery.get(key) ?? { query: s.record.query.trim(), searches: 0, results: 0, lastAt: 0 };
+          cur.searches += 1;
+          cur.results += s.record.resultCount;
+          if (s.at >= cur.lastAt) {
+            cur.lastAt = s.at;
+            cur.query = s.record.query.trim();
+          }
+          byQuery.set(key, cur);
+        }
+        return [...byQuery.values()]
+          .sort((a, b) => b.searches - a.searches || b.lastAt - a.lastAt)
+          .slice(0, USAGE_TOP)
+          .map((q) => ({ query: q.query, searches: q.searches, avgResults: Math.round(q.results / q.searches), lastAt: new Date(q.lastAt).toISOString() }));
+      };
+
+      const stores = new Map<string, Omit<StatsStore, 'storeName'> & { totalMs: number }>();
+      for (const r of storeDaily.values()) {
+        if (r.country !== country || r.day < from || r.day >= toExclusive) continue;
+        const cur = stores.get(r.storeId) ?? { storeId: r.storeId, runs: 0, ok: 0, empty: 0, failed: 0, avgMs: 0, totalMs: 0 };
+        cur.runs += r.runs;
+        cur.totalMs += r.totalMs;
+        if (r.status === 'ok') cur.ok += r.runs;
+        else if (r.status === 'sin-resultados') cur.empty += r.runs;
+        else cur.failed += r.runs;
+        stores.set(r.storeId, cur);
+      }
+      return {
+        daily,
+        topQueries: rank(people),
+        noResults: rank(people.filter((s) => s.record.resultCount === 0)),
+        stores: [...stores.values()].map(({ totalMs, ...s }) => ({ ...s, avgMs: s.runs > 0 ? Math.round(totalMs / s.runs) : 0 })),
+      };
     },
     async close() {},
   };

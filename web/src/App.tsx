@@ -8,6 +8,7 @@ import { DealsPage } from './pages/DealsPage.tsx';
 import { HomePage } from './pages/HomePage.tsx';
 import { LegalPage } from './pages/LegalPage.tsx';
 import { SearchPage } from './pages/SearchPage.tsx';
+import { StatsPage } from './pages/StatsPage.tsx';
 import { SettingsPage } from './pages/SettingsPage.tsx';
 import { StoresPage } from './pages/StoresPage.tsx';
 
@@ -51,6 +52,8 @@ function Shell() {
           <Route path="/ajustes" element={<SettingsPage />} />
           <Route path="/privacidad" element={<LegalPage kind="privacidad" />} />
           <Route path="/terminos" element={<LegalPage kind="terminos" />} />
+          {/* Reporte privado de uso: sin enlace en el menú; pide la llave del reporte. */}
+          <Route path="/estadisticas" element={<StatsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

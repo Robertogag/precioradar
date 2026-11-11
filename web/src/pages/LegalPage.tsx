@@ -7,7 +7,7 @@ type Kind = 'privacidad' | 'terminos';
 const ES: Record<Kind, { title: string; updated: string; sections: { h: string; p: string[] }[] }> = {
   privacidad: {
     title: 'Aviso de privacidad',
-    updated: 'Actualizado el 9 de noviembre de 2026',
+    updated: 'Actualizado el 11 de noviembre de 2026',
     sections: [
       {
         h: 'Quién es responsable',
@@ -19,6 +19,7 @@ const ES: Record<Kind, { title: string; updated: string; sections: { h: string; 
           'No hay cuentas ni registro. No pedimos nombre, correo ni teléfono.',
           'El servidor guarda el texto de lo que la gente busca (sin asociarlo a una persona) y los precios que las tiendas publican, para el historial de precios y las sugerencias al escribir.',
           'Como cualquier servidor, las bitácoras técnicas de Google Cloud registran la dirección IP de cada petición durante 30 días; se usan solo para limitar abusos y diagnosticar fallas.',
+          'Para saber cuántas personas usan PrecioRadar cada día, cada búsqueda lleva un código que se calcula con tu conexión y tu navegador. Cambia cada día, no permite saber tu IP ni seguirte de un día a otro, y la IP no se guarda en la base de datos.',
           'Tus ajustes (país, idioma, tema, búsquedas recientes) se guardan únicamente en tu navegador o en tu teléfono; puedes borrarlos desde la app.',
         ],
       },
@@ -75,7 +76,7 @@ const ES: Record<Kind, { title: string; updated: string; sections: { h: string; 
 const EN: Record<Kind, { title: string; updated: string; sections: { h: string; p: string[] }[] }> = {
   privacidad: {
     title: 'Privacy notice',
-    updated: 'Updated November 9, 2026',
+    updated: 'Updated November 11, 2026',
     sections: [
       { h: 'Who is responsible', p: ['PrecioRadar is an independent project by Juan Roberto García. It is not owned by, nor paid by, any store.'] },
       {
@@ -84,6 +85,7 @@ const EN: Record<Kind, { title: string; updated: string; sections: { h: string; 
           'There are no accounts. We never ask for your name, email or phone.',
           'The server stores search texts (not linked to a person) and the prices stores publish, for price history and typing suggestions.',
           'Like any server, Google Cloud logs keep the IP address of each request for 30 days, used only to limit abuse and diagnose failures.',
+          'To know how many people use PrecioRadar each day, every search carries a code computed from your connection and browser. It changes every day, cannot reveal your IP or follow you from one day to the next, and the IP is not stored in the database.',
           'Your settings (country, language, theme, recent searches) live only in your browser or phone; you can clear them in the app.',
         ],
       },

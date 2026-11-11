@@ -202,6 +202,54 @@ export interface SearchResponse {
   partial?: boolean;
 }
 
+/** Un día de uso, en hora de México. */
+export interface StatsDay {
+  day: string;
+  /** Búsquedas de personas (nuevas más repetidas que salieron de caché). */
+  searches: number;
+  /** De esas, cuántas salieron de caché (alguien buscó lo mismo hace poco). */
+  fromCache: number;
+  /** Personas distintas ese día (código que cambia cada día; no se guarda la IP). */
+  visitors: number;
+  /** Búsquedas del refresco automático de las 6:00; no son personas. */
+  refresh: number;
+}
+
+export interface StatsQuery {
+  query: string;
+  searches: number;
+  /** Productos encontrados en promedio. */
+  avgResults: number;
+  lastAt: string;
+}
+
+export interface StatsStore {
+  storeId: string;
+  storeName: string;
+  /** Veces que se le preguntó (búsquedas nuevas, de personas y del refresco). */
+  runs: number;
+  ok: number;
+  /** Contestó pero no tenía el producto. */
+  empty: number;
+  /** Bloqueó, tardó demasiado o falló. */
+  failed: number;
+  avgMs: number;
+}
+
+/** Reporte privado de uso (ruta con llave). */
+export interface StatsResponse {
+  country: string;
+  from: string;
+  to: string;
+  totals: { searches: number; fromCache: number; visits: number; refresh: number };
+  daily: StatsDay[];
+  topQueries: StatsQuery[];
+  /** Lo que la gente buscó y no encontró en ninguna tienda. */
+  noResults: StatsQuery[];
+  stores: StatsStore[];
+  generatedAt: string;
+}
+
 export interface DealsResponse {
   country: string;
   offers: Offer[];

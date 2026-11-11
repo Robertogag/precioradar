@@ -1,3 +1,4 @@
+import { createHmac } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { createHistoryService } from './application/history.ts';
@@ -6,6 +7,7 @@ import { createObservationsService } from './application/observations.ts';
 import type { SearchHistory } from './application/ports.ts';
 import { createRefreshJob } from './application/refreshJob.ts';
 import { createSearchService } from './application/searchOffers.ts';
+import { createStatsService } from './application/stats.ts';
 import { createSuggestService } from './application/suggest.ts';
 import { KNOWN_MODELS } from './domain/models.ts';
 import { createBrowserLane, findChromium } from './infrastructure/browser/browserLane.ts';
@@ -131,8 +133,15 @@ export function compose(log: (message: string) => void = console.log) {
   const jobKey = process.env.JOB_KEY?.trim() || null;
   if (!jobKey) log('refresco: sin JOB_KEY, el refresco programado está apagado.');
 
+  // Reporte privado de uso (/api/stats con X-Stats-Key) y código de visitante del día. El secreto del código sale
+  // de JOB_KEY (ya vive en Secret Manager); sin él, las búsquedas se anotan sin código de visitante.
+  const stats = createStatsService({ history, clock, storeName: (id) => storeNames.get(id) ?? null });
+  const statsKey = process.env.STATS_KEY?.trim() || null;
+  if (!statsKey) log('estadísticas: sin STATS_KEY, el reporte de uso está apagado.');
+  const visitorKey = jobKey ? createHmac('sha256', jobKey).update('precioradar:visitante').digest('hex') : null;
+
   // Precios vistos por personas en la app (Mercado Libre): se guardan en el historial con origen 'usuario'.
   const observations = createObservationsService({ history, onError: (err) => log(`observaciones: ${err instanceof Error ? err.message : String(err)}`) });
 
-  return { service, suggester, historyService, links, observations, job, jobKey, registry, history, security, lane };
+  return { service, suggester, historyService, links, observations, job, jobKey, stats, statsKey, visitorKey, registry, history, security, lane };
 }

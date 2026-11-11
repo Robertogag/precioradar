@@ -1,9 +1,21 @@
 import { readFileSync } from 'node:fs';
 import pg from 'pg';
-import type { CoverageInfo, ItemRef, PriceRecord, PriceSeries, RememberedOffer, SearchHistory, SearchRecord } from '../../application/ports.ts';
+import type { StatsQuery } from '../../../../shared/contracts.ts';
+import type {
+  CoverageInfo,
+  ItemRef,
+  PriceRecord,
+  PriceSeries,
+  RememberedOffer,
+  SearchHistory,
+  SearchRecord,
+  StoreRunRecord,
+  UsageReport,
+} from '../../application/ports.ts';
 import { TIME_ZONE } from '../../domain/dates.ts';
 import type { LearnedTerm } from '../../domain/suggest.ts';
 import { normalize } from '../../domain/text.ts';
+import { USAGE_TOP } from './memoryHistory.ts';
 
 export interface PgHistoryOptions {
   /** postgres://usuario:clave@host:5432/base, o con ?host=/cloudsql/PROYECTO:REGION:INSTANCIA en Cloud Run. */
@@ -47,10 +59,14 @@ export function createPgHistory(opts: PgHistoryOptions): SearchHistory & { ready
     async recordSearch(record: SearchRecord) {
       await ready;
       const norm = normalize(record.query);
+      const origin = record.origin ?? 'persona';
       await pool.query(
-        'INSERT INTO comparador.searches (country, query, query_norm, result_count, store_count) VALUES ($1, $2, $3, $4, $5)',
-        [record.country, record.query.trim().slice(0, 120), norm, record.resultCount, record.storeCount],
+        `INSERT INTO comparador.searches (country, query, query_norm, result_count, store_count, origin, from_cache, visitor)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+        [record.country, record.query.trim().slice(0, 120), norm, record.resultCount, record.storeCount, origin, record.fromCache === true, record.visitor ?? null],
       );
+      // Lo que busca el refresco automático no es de nadie: no alimenta lo más buscado ni las sugerencias.
+      if (origin === 'refresco') return;
       if (record.resultCount <= 0 || norm.length < 3 || norm.length > 80) return;
       await pool.query(
         `INSERT INTO comparador.terms (country, term_norm, term, hits, last_at)
@@ -196,6 +212,85 @@ export function createPgHistory(opts: PgHistoryOptions): SearchHistory & { ready
         [country, Math.max(1, Math.min(limit, 200))],
       );
       return rows.map((r) => r.term);
+    },
+
+    async recordStoreRuns(country: string, runs: StoreRunRecord[]) {
+      if (runs.length === 0) return;
+      await ready;
+      await pool.query(
+        `INSERT INTO comparador.store_daily (country, day, store_id, status, runs, total_ms)
+         SELECT $1, (now() AT TIME ZONE $2)::date, t.store_id, t.status, 1, t.ms
+           FROM unnest($3::text[], $4::text[], $5::bigint[]) AS t(store_id, status, ms)
+         ON CONFLICT (country, day, store_id, status)
+         DO UPDATE SET runs = comparador.store_daily.runs + 1, total_ms = comparador.store_daily.total_ms + EXCLUDED.total_ms`,
+        [country, TIME_ZONE, runs.map((r) => r.storeId), runs.map((r) => r.status), runs.map((r) => Math.round(r.ms))],
+      );
+    },
+
+    async usage(country: string, from: string, toExclusive: string): Promise<UsageReport> {
+      await ready;
+      // El rango y el día se cuentan en hora de México; el índice (country, searched_at) acota la lectura.
+      const range = `country = $1 AND searched_at >= ($2::date::timestamp AT TIME ZONE $4) AND searched_at < ($3::date::timestamp AT TIME ZONE $4)`;
+      const params = [country, from, toExclusive, TIME_ZONE];
+      const ranked = (extra: string) =>
+        pool.query<{ query: string; searches: string; avg_results: string; last_at: Date }>(
+          `SELECT (array_agg(query ORDER BY searched_at DESC))[1] AS query, count(*) AS searches,
+                  round(avg(result_count)) AS avg_results, max(searched_at) AS last_at
+             FROM comparador.searches
+            WHERE ${range} AND origin = 'persona' ${extra}
+            GROUP BY query_norm
+            ORDER BY count(*) DESC, max(searched_at) DESC
+            LIMIT ${USAGE_TOP}`,
+          params,
+        );
+      const [daily, top, none, stores] = await Promise.all([
+        pool.query<{ day: string; searches: string; from_cache: string; visitors: string; refresh: string }>(
+          `SELECT ((searched_at AT TIME ZONE $4)::date)::text AS day,
+                  count(*) FILTER (WHERE origin = 'persona') AS searches,
+                  count(*) FILTER (WHERE origin = 'persona' AND from_cache) AS from_cache,
+                  count(DISTINCT visitor) FILTER (WHERE origin = 'persona') AS visitors,
+                  count(*) FILTER (WHERE origin = 'refresco') AS refresh
+             FROM comparador.searches
+            WHERE ${range}
+            GROUP BY 1
+            ORDER BY 1`,
+          params,
+        ),
+        ranked(''),
+        ranked('AND result_count = 0'),
+        pool.query<{ store_id: string; runs: string; ok: string; empty: string; total_ms: string }>(
+          `SELECT store_id, sum(runs) AS runs,
+                  coalesce(sum(runs) FILTER (WHERE status = 'ok'), 0) AS ok,
+                  coalesce(sum(runs) FILTER (WHERE status = 'sin-resultados'), 0) AS empty,
+                  sum(total_ms) AS total_ms
+             FROM comparador.store_daily
+            WHERE country = $1 AND day >= $2::date AND day < $3::date
+            GROUP BY store_id`,
+          [country, from, toExclusive],
+        ),
+      ]);
+      const query = (r: { query: string; searches: string; avg_results: string; last_at: Date }): StatsQuery => ({
+        query: r.query,
+        searches: num(r.searches),
+        avgResults: num(r.avg_results),
+        lastAt: r.last_at.toISOString(),
+      });
+      return {
+        daily: daily.rows.map((r) => ({ day: r.day, searches: num(r.searches), fromCache: num(r.from_cache), visitors: num(r.visitors), refresh: num(r.refresh) })),
+        topQueries: top.rows.map(query),
+        noResults: none.rows.map(query),
+        stores: stores.rows.map((r) => {
+          const runs = num(r.runs);
+          return {
+            storeId: r.store_id,
+            runs,
+            ok: num(r.ok),
+            empty: num(r.empty),
+            failed: runs - num(r.ok) - num(r.empty),
+            avgMs: runs > 0 ? Math.round(num(r.total_ms) / runs) : 0,
+          };
+        }),
+      };
     },
 
     async close() {
