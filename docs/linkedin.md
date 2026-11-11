@@ -18,6 +18,8 @@ Lo que aprendí construyéndolo:
 
 Stack: TypeScript de punta a punta (Fastify, React, Expo), Postgres y Cloud Run. La web ya está en línea; la app de celular está en pruebas.
 
+El historial de precios empezó el 7 de noviembre y crece cada día (cada búsqueda y cada mañana): justo a tiempo para ver si alguna tienda sube precios antes del Buen Fin para luego "bajarlos".
+
 Pruébala: https://precioradar-701205043940.us-central1.run.app
 Código: github.com/Robertogag/precioradar
 
